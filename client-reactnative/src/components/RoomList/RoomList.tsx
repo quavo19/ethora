@@ -14,15 +14,16 @@ import {FlatList} from 'react-native';
 import {CreateNewChatButton} from '../Chat/CreateNewChatButton';
 import {useNavigation} from '@react-navigation/native';
 import {HomeStackNavigationProp} from '../../navigation/types';
-import { roomListProps } from '../../stores/chatStore';
+import { roomListProps, roomMemberInfoProps } from '../../stores/chatStore';
 
 interface IRoomList{
   roomsList: roomListProps[];
+  roomMemberInfo: roomMemberInfoProps[];
 }
 
 export const RoomList:React.FC<IRoomList> = observer((props:IRoomList) => {
   const {chatStore} = useStores();
-  const {roomsList} = props;
+  const {roomsList, roomMemberInfo} = props;
   const sortedRoomsList = roomsList.sort(
     (a: any, b: any) =>
       chatStore.roomsInfoMap[a.jid]?.priority -

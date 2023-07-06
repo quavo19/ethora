@@ -88,5 +88,5 @@ export const RoomsTabBar = observer(() => {
     }
   }, [chatStore.roomList]);
 
-  return <RoomList roomsList={getRooms()} />;
+  return <RoomList roomsList={getRooms()} roomMemberInfo={[]} />;
 });

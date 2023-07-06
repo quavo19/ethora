@@ -6,7 +6,6 @@ Note: linked open-source libraries and components may be subject to their own li
 */
 
 export const loginURL = '/users/login';
-export const regularLoginUrl = '/users/login-with-email'
 
 export const tokenEtherBalanceURL = '/wallets/balance/';
 
@@ -17,8 +16,6 @@ export const tokenTransferURL = '/tokens/transfer';
 export const transactionURL = '/explorer/transactions?';
 
 export const registerUserURL = '/users';
-
-export const registerRegularEmailUrl = '/users/sign-up-with-email'
 
 export const checkPushSubscribe = '/subscriptions/deviceId/';
 

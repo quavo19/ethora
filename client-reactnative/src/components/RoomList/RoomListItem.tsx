@@ -5,7 +5,7 @@ You may obtain a copy of the License at https://github.com/dappros/ethora/blob/m
 Note: linked open-source libraries and components may be subject to their own licenses.
 */
 
-import React from "react";
+import React, { useState } from 'react';
 import { useNavigation } from "@react-navigation/native";
 import { RoomListItemIcon } from "./RoomListItemIcon";
 import { Box, HStack, Text, View, VStack } from "native-base";
@@ -15,9 +15,12 @@ import { observer } from "mobx-react-lite";
 import { TouchableOpacity } from "react-native";
 import { textStyles } from "../../../docs/config";
 import { useStores } from "../../stores/context";
+// import { MultiStoryScreen } from "../../story/modules/MultiStory";
+import RoomListItemStory from './RoomListItemStories';
 import { format } from "date-fns";
 import dayjs from "dayjs";
 import { HomeStackNavigationProp } from "../../navigation/types";
+
 
 interface RoomListProps {
   jid: string;
@@ -27,6 +30,8 @@ interface RoomListProps {
   index: number;
   length: number;
 }
+
+
 
 const removeStringSplits = (str: string) => {
   if (str) {
@@ -53,6 +58,16 @@ const getTime = (time: Date | undefined) => {
 };
 export const RoomListItem = observer(
   ({ jid, name, participants }: RoomListProps) => {
+    
+    const [randomColor, setRandomColor] = useState(getRandomColor());
+    function getRandomColor() {
+      var letters = '0123456789ABCDEF';
+      var color = '#';
+      for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+      }
+      return color + 'B3';
+    }
     const { chatStore } = useStores();
     const room = chatStore.roomsInfoMap[jid];
     const navigation = useNavigation<HomeStackNavigationProp>();
@@ -66,8 +81,15 @@ export const RoomListItem = observer(
     };
     return (
       <View style={[{ backgroundColor: "white" }]}>
+        <RoomListItemStory />
+        {/* <MultiStoryScreen /> */}
         <Box
-          borderBottomWidth="1"
+          style={[{marginVertical: 3, marginHorizontal: 1.5, height: 190}]}
+          borderWidth="1"
+          borderRadius={20}
+          margin={2}
+          backgroundColor={randomColor}
+          padding="10"
           _dark={{
             borderColor: "gray.600",
           }}
@@ -77,29 +99,39 @@ export const RoomListItem = observer(
           py="2"
         >
           <TouchableOpacity onPress={navigateToChat}>
-            <HStack justifyContent="space-between">
-              <View justifyContent={"center"} flex={0.15}>
-                <RoomListItemIcon
-                  name={name}
-                  jid={jid}
-                  counter={chatStore.roomsInfoMap[jid]?.counter}
-                />
-              </View>
+            <HStack justifyContent="space-between" height="100%">
+              
 
-              <VStack justifyContent={"center"} flex={0.7}>
-                <Text
+              <VStack justifyContent={"center"} flex={0.2}>
+              </VStack>
+              <View style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+              <Text
+                  style={{position: "absolute", paddingHorizontal: 10, top: -12 }}
                   numberOfLines={1}
-                  fontSize={hp("2%")}
+                  fontSize={hp("3%")}
                   fontFamily={textStyles.semiBoldFont}
                   accessibilityLabel="Name"
                   _dark={{
                     color: "warmGray.50",
                   }}
-                  color="coolGray.800"
+                  color="white"
+                  flex={1}
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  backgroundColor={randomColor}
+                >                   
+                {name}
+              </Text>
+              
+                <RoomListItemIcon
+                  name={name}
+                  jid={jid}
+                  counter={chatStore.roomsInfoMap[jid]?.counter}
+                />
+                <View
+                 style={{position: "absolute", paddingHorizontal: 10, bottom: -7, }}
                 >
-                  {name}
-                </Text>
-                {name && room?.lastUserName && room?.lastUserText ? (
+              {name && room?.lastUserName && room?.lastUserText ? (
                   <HStack
                     accessibilityLabel="Last message"
                     flex={1}
@@ -110,7 +142,7 @@ export const RoomListItem = observer(
                       <Text
                         fontFamily={textStyles.semiBoldFont}
                         fontSize={hp("1.7%")}
-                        color="coolGray.500"
+                        color="white"
                         _dark={{
                           color: "warmGray.100",
                         }}
@@ -122,9 +154,9 @@ export const RoomListItem = observer(
                     <Box>
                       <Text
                         fontFamily={textStyles.regularFont}
-                        fontSize={hp("1.5%")}
+                        fontSize={hp("1.7%")}
                         accessibilityLabel={"Last Message"}
-                        color="coolGray.600"
+                        color="white"
                         _dark={{
                           color: "warmGray.100",
                         }}
@@ -149,9 +181,9 @@ export const RoomListItem = observer(
                     {defaultText}
                   </Text>
                 )}
-              </VStack>
-
-              <VStack justifyContent={"center"} flex={0.15}>
+              </View>
+              </View>
+              <VStack justifyContent={"center"} flex={0.25}>
                 <HStack
                   accessibilityLabel="Participants"
                   justifyContent={"flex-end"}
@@ -159,11 +191,11 @@ export const RoomListItem = observer(
                 >
                   <MaterialIcon
                     name="group"
-                    color={"black"}
-                    size={hp("2%")}
+                    color={"white"}
+                    size={hp("3%")}
                     style={{
-                      marginRight: hp("0.9%"),
-                      marginLeft: hp("0.4%"),
+                      marginRight: hp("1%"),
+                      marginLeft: hp("0.6%"),
                     }}
                   />
                   <Text
@@ -171,7 +203,7 @@ export const RoomListItem = observer(
                       color: "warmGray.200",
                     }}
                     fontFamily={textStyles.semiBoldFont}
-                    color={"black"}
+                    color={"white"}
                   >
                     {participants}
                   </Text>

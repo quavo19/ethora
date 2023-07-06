@@ -26,15 +26,15 @@ export const RoomListItemIcon = observer(
         borderWidth={1}
         borderColor={commonColors.primaryDarkColor}
         backgroundColor={commonColors.primaryDarkColor}
-        height={hp('5.54%')}
-        width={hp('5.54%')}
+        height={hp('17.54%')}
+        width={hp('17.54%')}
         flexDirection={'row'}
         justifyContent={'center'}
         alignItems={'center'}
         textAlign={'center'}
         position={'relative'}
         accessibilityLabel={'Thumbnail'}
-        borderRadius={hp('0.7%')}>
+        borderRadius={hp('50%')}>
         {room?.roomThumbnail ? (
           <FastImage
             source={{
@@ -43,9 +43,9 @@ export const RoomListItemIcon = observer(
             }}
             resizeMode={FastImage.resizeMode.cover}
             style={{
-              width: hp('5.54%'),
-              height: hp('5.54%'),
-              borderRadius: hp('0.7%'),
+              width: hp('16.54%'),
+              height: hp('16.54%'),
+              borderRadius: hp('50.7%'),
             }}
           />
         ) : (
@@ -72,7 +72,7 @@ export const RoomListItemIcon = observer(
               marginTop={hp('1%')}
               height={hp('2.3%')}
               width={hp('2.3%')}
-              backgroundColor={'#FF0000'}
+              backgroundColor={'#FFFFFF'}
               alignItems={'center'}
               justifyContent={'center'}>
               <Text style={styles.counterText}>{counter}</Text>
@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
   },
   fullName: {
     color: 'white',
+    fontSize: 20,
     marginRight: 3,
     fontFamily: textStyles.boldFont,
     textTransform: 'uppercase',

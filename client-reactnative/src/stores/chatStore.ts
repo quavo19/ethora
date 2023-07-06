@@ -78,6 +78,15 @@ interface recentRealtimeChatProps {
   waveForm?: any;
 }
 
+export interface roomMemberInfoProps {
+  ban_status: string;
+  jid: string;
+  last_active: string;
+  name: string;
+  profile: string;
+  role: string;
+}
+
 export interface roomListProps {
   name: string;
   participants: number;
@@ -100,15 +109,6 @@ interface isComposingProps {
   username: string;
   manipulatedWalletAddress: string;
   chatJID: string;
-}
-
-export interface roomMemberInfoProps {
-  ban_status: string;
-  jid: string;
-  last_active: string;
-  name: string;
-  profile: string;
-  role: string;
 }
 
 export interface BlackListUser {

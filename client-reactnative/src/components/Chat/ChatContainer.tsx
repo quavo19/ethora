@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
   },
   suggestionsContainer: {
     position: "absolute",
-    bottom: 43,
+    bottom: 42,
     backgroundColor: "white",
     left: 0,
     padding: 10,
