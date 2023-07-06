@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { useStores } from "../../stores/context";
 import { getRoomArchiveStanza, getPaginatedArchive } from "../../xmpp/stanzas";
 import ChatContainer from "../../components/Chat/ChatContainer";
+import RoomListItemStory from '../../components/RoomList/RoomListItemStories';
 import { IMessage, roomListProps } from "../../stores/chatStore";
 import { View } from "native-base";
 
@@ -83,12 +84,20 @@ const ChatScreen = observer(({ route }: any) => {
 
   return (
     <View testID="ChatScreen">
+      <RoomListItemStory />
+      <View
+       style={{
+        position: "relative",
+        top: 0,
+       }} 
+      >
       <ChatContainer
         containerType="main"
         roomDetails={room}
         messages={messages}
         onLoadEarlier={onLoadEarlier}
       />
+      </View>
     </View>
   );
 });

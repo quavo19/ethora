@@ -16,7 +16,6 @@ import { TouchableOpacity } from "react-native";
 import { textStyles } from "../../../docs/config";
 import { useStores } from "../../stores/context";
 // import { MultiStoryScreen } from "../../story/modules/MultiStory";
-import RoomListItemStory from './RoomListItemStories';
 import { format } from "date-fns";
 import dayjs from "dayjs";
 import { HomeStackNavigationProp } from "../../navigation/types";
@@ -81,7 +80,6 @@ export const RoomListItem = observer(
     };
     return (
       <View style={[{ backgroundColor: "white" }]}>
-        <RoomListItemStory />
         {/* <MultiStoryScreen /> */}
         <Box
           style={[{marginVertical: 3, marginHorizontal: 1.5, height: 190}]}

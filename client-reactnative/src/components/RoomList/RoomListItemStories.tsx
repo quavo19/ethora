@@ -35,40 +35,17 @@ export default function RoomListItemStory() {
         'https://shorturl.at/fhUV1',
       profileName: 'Abdullah Ansari',
       viewed: false,
-      id: 1,
+      id: 2,
       stories: [
-        {
-          media: 'https://shorturl.at/mpwQ1',
-          mediaType: 'image',
-          seeMoreUrl: 'https://abdullahansari.me'
-        },
         {
           media: 'https://shorturl.at/jpJ58',
           mediaType: 'image',
           duration: 12000
         },
         {
-          media: 'https://shorturl.at/ckvyT',
-          mediaType: 'image',
-        },
-      ]
-    },
-    {
-      profileImage:
-        'https://shorturl.at/fhUV1',
-      profileName: 'Abdullah Ansari',
-      viewed: false,
-      id: 1,
-      stories: [
-        {
           media: 'https://shorturl.at/mpwQ1',
           mediaType: 'image',
           seeMoreUrl: 'https://abdullahansari.me'
-        },
-        {
-          media: 'https://shorturl.at/jpJ58',
-          mediaType: 'image',
-          duration: 12000
         },
         {
           media: 'https://shorturl.at/ckvyT',
@@ -132,7 +109,13 @@ export default function RoomListItemStory() {
   };
   
   return (
-    <SafeAreaView >
+    <SafeAreaView 
+     style={{
+      position: "absolute",
+      zIndex: 20,
+      top: 70,
+     }}
+    >
       <StatusBar />
       {/* you can also use FlatList here */}
       <ScrollView horizontal>
