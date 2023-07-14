@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import React, { useEffect } from "react";
 import { format } from "date-fns";
 import { useStores } from "../../stores/context";
+import { MultiStoryScreen } from "../../components/storyView/modules";
 import { getRoomArchiveStanza, getPaginatedArchive } from "../../xmpp/stanzas";
 import ChatContainer from "../../components/Chat/ChatContainer";
 import RoomListItemStory from '../../components/RoomList/RoomListItemStories';
@@ -84,7 +85,13 @@ const ChatScreen = observer(({ route }: any) => {
 
   return (
     <View testID="ChatScreen">
-      <RoomListItemStory />
+      <View style ={{
+        position: "absolute",
+        zIndex: 3
+      }}>
+        <MultiStoryScreen />
+      </View>
+      {/* <RoomListItemStory /> */}
       <View
        style={{
         position: "relative",
