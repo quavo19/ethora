@@ -74,7 +74,7 @@ const ChatScreen = observer(({ route }: any) => {
           format(new Date(lastMessage?.createdAt), "hh:mm"),
       });
   }, [!!messages]);
-
+ 
   const onLoadEarlier = () => {
     const lastMessage = messages.length - 1;
     if (messages.length > 5) {
@@ -86,8 +86,9 @@ const ChatScreen = observer(({ route }: any) => {
   return (
     <View testID="ChatScreen">
       <View style ={{
-        position: "absolute",
-        zIndex: 3
+        //position: "absolute",
+        zIndex: 3,
+        height: 90,
       }}>
         <MultiStoryScreen />
       </View>
@@ -96,6 +97,7 @@ const ChatScreen = observer(({ route }: any) => {
        style={{
         position: "relative",
         top: 0,
+        height: "88.2%"
        }} 
       >
       <ChatContainer

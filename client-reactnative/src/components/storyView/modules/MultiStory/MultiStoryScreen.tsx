@@ -31,14 +31,9 @@ const MultiStoryScreen = () => {
   };
 
   return (
-    <ImageBackground
-      style={styles.container}
-      resizeMode="cover"
-      source={Images.background}>
       <View style={styles.storyWrapper}>
-        <Text style={styles.albumText}>{Strings.album}</Text>
         <MultiStory
-        
+
           stories={userStories}
           transitionMode={TransitionMode.Cube}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
@@ -66,7 +61,6 @@ const MultiStoryScreen = () => {
           }}
         />
       </View>
-    </ImageBackground>
   );
 };
 

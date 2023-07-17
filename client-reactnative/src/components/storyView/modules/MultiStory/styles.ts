@@ -7,18 +7,11 @@ const styles = StyleSheet.create({
   },
   storyWrapper: {
     flex: 1,
-    marginTop: verticalScale(40),
-    marginHorizontal: moderateScale(10)
-  },
-  albumText: {
-    fontSize: moderateScale(30),
-    marginHorizontal: moderateScale(10),
-    color: Colors.white,
-    fontWeight: 'bold',
-    marginBottom: verticalScale(20)
+    // marginTop: verticalScale(53),
+    marginHorizontal: moderateScale(5)
   },
   separator: {
-    marginHorizontal: moderateScale(6)
+    marginHorizontal: moderateScale(-2)
   }
 });
 
