@@ -37,7 +37,9 @@ const RootStack = observer(() => {
           </Center>
         </View>
       ) : (
-        <SafeAreaView style={{flex: 1}}>
+        <View style={{
+          flex: 1,
+        }}>
           <Stack.Navigator>
             {userToken ? (
               <Stack.Screen
@@ -53,7 +55,7 @@ const RootStack = observer(() => {
               />
             )}
           </Stack.Navigator>
-        </SafeAreaView>
+        </View>
       )}
     </>
   );

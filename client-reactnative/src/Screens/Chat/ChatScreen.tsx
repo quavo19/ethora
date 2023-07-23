@@ -1,15 +1,18 @@
 import { observer } from "mobx-react-lite";
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback, useRef, useMemo  } from "react";
+import { StyleSheet, Text, Button, SafeAreaView } from "react-native";
+import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { format } from "date-fns";
 import { useStores } from "../../stores/context";
 import { MultiStoryScreen } from "../../components/storyView/modules";
 import { getRoomArchiveStanza, getPaginatedArchive } from "../../xmpp/stanzas";
 import ChatContainer from "../../components/Chat/ChatContainer";
+import ChatBottomSheet from "./ChatRoom";
 import RoomListItemStory from '../../components/RoomList/RoomListItemStories';
 import { IMessage, roomListProps } from "../../stores/chatStore";
 import { View } from "native-base";
 
-const ChatScreen = observer(({ route }: any) => {
+const ChatScreen2 = observer(({ route }: any) => {
   const { chatStore } = useStores();
 
   const { chatJid, chatName } = route.params;
@@ -82,33 +85,77 @@ const ChatScreen = observer(({ route }: any) => {
       chatStore.setChatMessagesLoading(true);
     }
   };
+  const sheetRef = useRef<BottomSheet>(null);
 
+  // variables
+  const snapPoints = useMemo(() => ["1%", "50%", "100%"], []);
+
+  // callbacks
+  const handleSheetChange = useCallback((index) => {
+    console.log("handleSheetChange", index);
+  }, []);
+  const handleSnapPress = useCallback((index) => {
+    sheetRef.current?.snapToIndex(index);
+  }, []);
+  const handleClosePress = useCallback(() => {
+    sheetRef.current?.close();
+  }, []);
   return (
     <View testID="ChatScreen">
+      
+      <SafeAreaView style={styles.safeArea}>
       <View style ={{
-        //position: "absolute",
-        zIndex: 3,
+        position: "absolute",
         height: 90,
+        
       }}>
-        <MultiStoryScreen />
+        <RoomListItemStory />
+        
       </View>
-      {/* <RoomListItemStory /> */}
-      <View
+      <View style={styles.container}>
+        <View>
+        <Button title="Close" onPress={() => handleClosePress()} />
+        </View>
+        <Button title="open" onPress={() => handleSnapPress(2)} />
+      <BottomSheet
+        ref={sheetRef}
+        snapPoints={snapPoints}
+        onChange={handleSheetChange}
+      >
+        <BottomSheetView>
+        <View
        style={{
         position: "relative",
-        top: 0,
-        height: "88.2%"
+        height: "100%"
+        
        }} 
       >
-      <ChatContainer
+        
+        <ChatContainer
         containerType="main"
         roomDetails={room}
         messages={messages}
         onLoadEarlier={onLoadEarlier}
       />
+      
       </View>
+        </BottomSheetView>
+      </BottomSheet>
+    </View>
+    </SafeAreaView>
     </View>
   );
 });
 
-export default ChatScreen;
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 200,
+    position: "relative",
+    top: 170,
+    height: "88.2%"
+  },
+  safeArea: {
+    zIndex:100000,
+  }
+});
+export default ChatScreen2;

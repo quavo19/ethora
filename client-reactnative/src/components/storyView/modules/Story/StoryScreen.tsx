@@ -35,7 +35,7 @@ const StoryScreen = () => {
       item.isSeen = viewedStories.current?.[index] ?? false;
     });
     setUserStories({ ...clonedUserStories });
-    setIsStoryViewShow(false);
+    setIsStoryViewShow(true);
   };
 
   const storyInitialIndex: number = viewedStories?.current?.findIndex(
@@ -59,6 +59,7 @@ const StoryScreen = () => {
         statusBarTranslucent={true}
         onRequestClose={closeStory}>
         <SafeAreaView style={styles.storyContainer}>
+         
           <StoryContainer
             visible
             ref={ref}

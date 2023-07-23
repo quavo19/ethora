@@ -95,6 +95,7 @@ export interface roomListProps {
   counter: number;
   lastUserText: string;
   lastUserName: string;
+  lastUserAvatar: string;
   createdAt: string;
   priority?: number;
   muted?: boolean;
@@ -637,6 +638,7 @@ export class ChatStore {
           ...this.roomsInfoMap[latestMessage?.roomJid],
 
           lastUserName: latestMessage?.user.name,
+          lastUserAvatar: latestMessage?.user.avatar,
           lastUserText: latestMessage?.text,
           muted: this.roomsInfoMap[item.jid]?.muted,
 
@@ -962,6 +964,7 @@ export class ChatStore {
             avatar: "https://placeimg.com/140/140/any",
             counter: 0,
             lastUserText: "",
+            lastUserAvatar: "",
             lastUserName: "",
             createdAt: new Date(),
             priority: 0,
@@ -1176,6 +1179,7 @@ export class ChatStore {
           this.updateRoomInfo(message.roomJid, {
             lastUserText: message?.text,
             lastUserName: message?.user?.name,
+            lastUserAvatar: message?.user?.avatar,
             lastMessageTime: message?.createdAt,
           });
           if (message.system) {
