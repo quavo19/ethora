@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { ImageBackground, View, Text } from 'react-native';
 import {
   type MultiStoryRef,
@@ -12,11 +12,19 @@ import { Colors } from '../../theme';
 import Images from '../../assets';
 import styles from './styles';
 
-const MultiStoryScreen = () => {
+const MultiStoryScreen = (visible, userStoryIndex) => {
   const multiStoryRef = useRef<MultiStoryRef>(null);
+  const [pressedIndex, setPressedIndex] = useState(0);
+  const [isStoryViewVisible, setIsStoryViewVisible] = useState(true);
+
   const [userStories, setUserStories] = useState(
     JSON.parse(JSON.stringify(stories))
   );
+
+  useEffect(() => {
+    setPressedIndex(userStoryIndex);
+    setIsStoryViewVisible(visible);
+  }, [visible, userStoryIndex]);
 
   const onStoryClose = (viewedStories?: Array<boolean[]>) => {
     if (viewedStories == null || viewedStories == undefined) return;
@@ -31,9 +39,9 @@ const MultiStoryScreen = () => {
   };
 
   return (
-      <View style={styles.storyWrapper}>
-        <MultiStory
-
+      <View>
+    
+    <MultiStory
           stories={userStories}
           transitionMode={TransitionMode.Cube}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
@@ -52,14 +60,14 @@ const MultiStoryScreen = () => {
               <Header {...{ userStories, multiStoryRef }} />
             ),
             renderFooterComponent: ({ userStories, story, progressIndex }) => (
-              <Footer {...{ userStories, story, progressIndex }} />
+              <Footer {...{ userStories, story, progressIndex }}/>
             ),
             renderIndicatorComponent: () => <Indicator />,
             barStyle: {
               barActiveColor: Colors.red
             }
           }}
-        />
+     />
       </View>
   );
 };
