@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { HomeScreen, MultiStoryScreen, StoryScreen } from '../modules';
 import { NavigationStrings } from '../constants';
-import { Colors } from '../../src/theme';
+import { Colors } from '../theme';
 
 const Stack = createNativeStackNavigator();
 

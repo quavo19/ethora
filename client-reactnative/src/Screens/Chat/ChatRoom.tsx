@@ -1,44 +1,51 @@
-import * as React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
-import Animated from 'react-native-reanimated';
-import BottomSheet from 'reanimated-bottom-sheet';
+import React, { useCallback, useRef, useMemo } from "react";
+import { StyleSheet, View, Text, Button } from "react-native";
+import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
+import ChatScreen from "./ChatExperimental";
 
-export default function ChatBottomSheet() {
-  const renderContent = () => (
-    <View
-      style={{
-        backgroundColor: 'white',
-        padding: 16,
-        height: 450,
-      }}
-    >
-      <Text>Swipe down to close</Text>
-    </View>
-  );
+const ChatBottomSheet = () => {
+  // hooks
+  const sheetRef = useRef<BottomSheet>(null);
 
-  const sheetRef = React.useRef(null);
+  // variables
+  const snapPoints = useMemo(() => ["25%", "50%", "90%"], []);
 
+  // callbacks
+  const handleSheetChange = useCallback((index) => {
+    console.log("handleSheetChange", index);
+  }, []);
+  const handleSnapPress = useCallback((index) => {
+    sheetRef.current?.snapToIndex(index);
+  }, []);
+  const handleClosePress = useCallback(() => {
+    sheetRef.current?.close();
+  }, []);
+
+  // render
   return (
-    <>
-      <View
-        style={{
-          flex: 1,
-          backgroundColor: 'papayawhip',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <Button
-          title="Open Bottom Sheet"
-          onPress={() => sheetRef.current.snapTo(0)}
-        />
-      </View>
+    <View style={styles.container}>
+      <Button title="Snap To 90%" onPress={() => handleSnapPress(2)} />
+      <Button title="Snap To 50%" onPress={() => handleSnapPress(1)} />
+      <Button title="Snap To 25%" onPress={() => handleSnapPress(0)} />
+      <Button title="Close" onPress={() => handleClosePress()} />
       <BottomSheet
         ref={sheetRef}
-        snapPoints={[450, 300, 0]}
-        borderRadius={10}
-        renderContent={renderContent}
-      />
-    </>
+        snapPoints={snapPoints}
+        onChange={handleSheetChange}
+      >
+        <BottomSheetView>
+          <Text>Awesome 🔥</Text>
+        </BottomSheetView>
+      </BottomSheet>
+    </View>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 200,
+  },
+});
+
+export default ChatBottomSheet;

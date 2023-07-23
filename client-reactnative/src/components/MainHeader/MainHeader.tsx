@@ -105,7 +105,13 @@ export const MainHeader = observer(() => {
     return chatStore.activeChats === id;
   };
   return (
-    <Box
+    <View style={{
+      position: "absolute",
+      width: "100%",
+      top: 850,
+      // backgroundColor: 
+    }}>
+        <Box
       style={{
         shadowColor: '#000',
         shadowOffset: {
@@ -119,10 +125,12 @@ export const MainHeader = observer(() => {
       }}
       height={hp('9%')}
       justifyContent={'center'}
-      bgColor={'gray.500'}>
+      
+      borderBottomRadius={20}
+      bgColor={'rgba(0, 0, 0, 0.5)'}>
       <HStack space={3} alignItems="center" justifyContent="space-between">
         <VStack>
-          <HStack>
+          <HStack marginLeft={5}>
             <HeaderMenu />
           </HStack>
         </VStack>
@@ -148,7 +156,7 @@ export const MainHeader = observer(() => {
                   name={item.icon}
                   size={30}
                   color={
-                    !highlightIcon(item.key) ? 'rgba(255,255,255,0.6)' : 'white'
+                   'rgba(255,255,255,0.6)'
                   }
                 />
               </TouchableOpacity>
@@ -162,7 +170,8 @@ export const MainHeader = observer(() => {
                     alignSelf="flex-end"
                     _text={{
                       fontSize: 8,
-                    }}>
+                    }}> 
+                    
                     {chatStore.unreadMessagesForGroups[item.key]}
                   </Badge>
                 </View>
@@ -172,12 +181,14 @@ export const MainHeader = observer(() => {
         })}
 
         <VStack>
-          <HStack marginRight={5}>
+          <HStack marginRight={7}>
             <HeaderBalanceButton />
           </HStack>
         </VStack>
       </HStack>
     </Box>
+    </View>
+    
   );
 });
 

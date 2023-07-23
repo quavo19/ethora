@@ -1,59 +1,51 @@
-import Close from '../../assets/close'
-//import { LinearGradient } from 'expo-linear-gradient';
-import React, { useEffect, useState } from 'react';
+//import Close from 'example/assets/Close';
+import { useEffect, useState } from 'react';
 import { StyleSheet, SafeAreaView, Pressable, View, Image, Text, Dimensions, StatusBar, ScrollView, Platform } from 'react-native';
-import ExpoInstaStory from 'expo-insta-story';
+import Stories from 'rn-story';
 const { width } = Dimensions.get('window');
 
-export default function RoomListItemStory() {
-  const data = [
+export default function App() {
+  const [data, setData] = useState<Data[]>([
     {
+      profileImage:
+        'https://shorturl.at/fhUV1',
+      profileName: 'Abdullah Ansari',
+      viewed: false,
       id: 1,
-      avatar_image:
-        'https://pbs.twimg.com/profile_images/1222140802475773952/61OmyINj.jpg',
-      user_name: 'Muhammad Bilal',
       stories: [
         {
-          story_id: 1,
-          story:
-            'https://image.freepik.com/free-vector/universe-mobile-wallpaper-with-planets_79603-600.jpg',
-          swipeText: 'Custom swipe text for this story',
-          onPress: () => console.log('story 1 swiped'),
-          duration: 10, //This tells the duration of each screen
+          media: 'https://shorturl.at/mpwQ1',
+          mediaType: 'image',
+          seeMoreUrl: 'https://abdullahansari.me'
         },
         {
+          media: 'https://shorturl.at/jpJ58',
+          mediaType: 'image',
+          duration: 12000
         },
-      ],
+        {
+          media: 'https://shorturl.at/ckvyT',
+          mediaType: 'image',
+        },
+      ]
     },
     {
+      profileImage:
+        'https://shorturl.at/fhUV1',
+      profileName: 'Abdullah Ansari 2',
+      viewed: false,
       id: 2,
-      avatar_image:
-        'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
-      user_name: 'Test User',
       stories: [
         {
-          story_id: 1,
-          story:
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjORKvjcbMRGYPR3QIs3MofoWkD4wHzRd_eg&usqp=CAU',
-          swipeText: 'Custom swipe text for this story',
-          onPress: () => console.log('story 1 swiped'),
-          duration: 10,
+          media: 'https://shorturl.at/DEKP1',
+          mediaType: 'video',
         },
         {
-          story_id: 2,
-          story: 'https://demo-link/123-123-123.mp4',
-          swipeText: 'Custom swipe text for this story',
-          onPress: () => console.log('story 2 swiped'),
-          duration: 10,
-          /* This indicates that this item is a video,
-             when passing a video urlm this field must be added
-          */
-          isVideo: true,
-        },
-      ],
-    },
-    
-    
+          media: 'https://shorturl.at/pJZ28',
+          mediaType: 'image',
+        }
+      ]
+    }
   ]);
   //setting this state to null will close the story view
   const [currentStoryIndex, setCurrentStoryIndex] = useState<number | null>(null);
@@ -66,10 +58,6 @@ export default function RoomListItemStory() {
         storyItem.header = <View style={[styles.avatarAndIconsContainer]}>
           {/* THE AVATAR AND USERNAME  */}
           <View style={[styles.avatarAndIconsContainer]}>
-            {/* <LinearGradient
-              colors={[`rgba(0,0,0,0.25)`, 'transparent']}
-              style={[styles.linearGradient]}
-            /> */}
             <View style={styles.avatarAndProfileContainer}>
               <Image
                 style={[styles.profileImage]}
@@ -88,8 +76,9 @@ export default function RoomListItemStory() {
           </View>
           <View style={styles.iconContainer}>
             {/* THE CLOSE BUTTON */}
-            <Pressable style={{ marginLeft: 12 }} onPress={() => setCurrentStoryIndex(1)}>
-              <Close height={28} width={28} fill={"#fff"} stroke={"#fff"} />
+            <Pressable style={{ marginLeft: 12 }} onPress={() => setCurrentStoryIndex(null)}>
+             <Text>x</Text>
+              {/* <Close height={28} width={28} fill={"#fff"} stroke={"#fff"} /> */}
             </Pressable>
             {/* END OF CLOSE BUTTON */}
           </View>
@@ -98,31 +87,9 @@ export default function RoomListItemStory() {
     });
     setData(_tempData);
   }, []);
-
-  const handleNext = () => {
-    console.log("went to next")
-  };
-
-  const handlePrevious = () => {
-    console.log("went to prev")
-  };
-  const handleAllStoriesEnd = () => {
-    if (currentStoryIndex === null) {
-      setCurrentStoryIndex(0); // Start showing the first story
-    } else if (currentStoryIndex < data.length - 1) {
-      setCurrentStoryIndex(currentStoryIndex + 1); // Move to the next story
-    } else {
-      setCurrentStoryIndex(null); // Close the story view when all stories are finished
-    }
-  };
+  
   return (
-    <SafeAreaView 
-     style={{
-      position: "absolute",
-      zIndex: 20,
-      top: 70,
-     }}
-    >
+    <SafeAreaView >
       <StatusBar />
       {/* you can also use FlatList here */}
       <ScrollView horizontal>
@@ -152,11 +119,11 @@ export default function RoomListItemStory() {
         <Stories
           stories={data[currentStoryIndex].stories}
           //called when user taps on next
-          onNext={() => handlePrevious()}
+          onNext={() => console.log("next")}
           //called when user taps on previous
-          onPrevious={() => handleNext()}
+          onPrevious={() => console.log("previous")}
           // close story view if there are no more stories to go next to
-          onAllStoriesEnd={handleAllStoriesEnd}
+          onAllStoriesEnd={() => setCurrentStoryIndex(null)}
           //close story view if there are no more stories to go back to
           onPreviousFirstStory={() => setCurrentStoryIndex(null)}
           //custom loading component

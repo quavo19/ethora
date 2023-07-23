@@ -32,7 +32,13 @@ export const RoomList:React.FC<IRoomList> = observer((props:IRoomList) => {
   const navigation = useNavigation<HomeStackNavigationProp>();
   return (
     <>
-      <View justifyContent={'center'} alignItems={'center'} w={'full'}>
+      <View style={{
+        backgroundColor: "rgba(0, 0, 0, 0.9)",
+        paddingTop: 70
+      }} justifyContent={'center'} alignItems={'center'} w={'full'}>
+      <CreateNewChatButton
+          onPress={() => navigation.navigate('NewChatScreen')}
+        />
         <FlatList
           nestedScrollEnabled={true}
           style={{width: '100%'}}
@@ -52,9 +58,7 @@ export const RoomList:React.FC<IRoomList> = observer((props:IRoomList) => {
             );
           }}
         />
-        <CreateNewChatButton
-          onPress={() => navigation.navigate('NewChatScreen')}
-        />
+        
       </View>
     </>
   );

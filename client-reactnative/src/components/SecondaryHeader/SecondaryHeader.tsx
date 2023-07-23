@@ -46,7 +46,7 @@ const SecondaryHeader: React.FC<SecondaryHeaderProps> = ({
     navigation.goBack();
   };
   return (
-    <Box h={60} justifyContent={'center'} bg={commonColors.primaryDarkColor}>
+    <Box h={60} justifyContent={'center'} bg={"gray.500"}>
       <HStack>
         <TouchableOpacity
           accessibilityLabel="Back button"
