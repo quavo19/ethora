@@ -2,6 +2,7 @@ import { observer } from "mobx-react-lite";
 import React, { useEffect } from "react";
 import { format } from "date-fns";
 import { useStores } from "../../stores/context";
+import { MultiStoryScreen } from "../../components/storyView/modules";
 import { getRoomArchiveStanza, getPaginatedArchive } from "../../xmpp/stanzas";
 import ChatContainer from "../../components/Chat/ChatContainer";
 import RoomListItemStory from '../../components/RoomList/RoomListItemStories';
@@ -73,7 +74,7 @@ const ChatScreen = observer(({ route }: any) => {
           format(new Date(lastMessage?.createdAt), "hh:mm"),
       });
   }, [!!messages]);
-
+ 
   const onLoadEarlier = () => {
     const lastMessage = messages.length - 1;
     if (messages.length > 5) {
@@ -84,11 +85,19 @@ const ChatScreen = observer(({ route }: any) => {
 
   return (
     <View testID="ChatScreen">
-      <RoomListItemStory />
+      <View style ={{
+        //position: "absolute",
+        zIndex: 3,
+        height: 90,
+      }}>
+        <MultiStoryScreen />
+      </View>
+      {/* <RoomListItemStory /> */}
       <View
        style={{
         position: "relative",
         top: 0,
+        height: "88.2%"
        }} 
       >
       <ChatContainer

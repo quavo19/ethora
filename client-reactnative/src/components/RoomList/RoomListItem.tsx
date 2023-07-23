@@ -60,12 +60,12 @@ export const RoomListItem = observer(
     
     const [randomColor, setRandomColor] = useState(getRandomColor());
     function getRandomColor() {
-      var letters = '0123456789ABCDEF';
-      var color = '#';
-      for (var i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-      }
-      return color + 'B3';
+      var minShade = 140; // Minimum shade value (0-255) for black
+      var maxShade = 210; // Maximum shade value (0-255) for black
+      var shade = Math.floor(Math.random() * (maxShade - minShade + 1)) + minShade; // Random shade value
+    
+      var color = 'rgb(' + shade + ',' + shade + ',' + shade + ')';
+      return color;
     }
     const { chatStore } = useStores();
     const room = chatStore.roomsInfoMap[jid];
@@ -82,9 +82,9 @@ export const RoomListItem = observer(
       <View style={[{ backgroundColor: "white" }]}>
         {/* <MultiStoryScreen /> */}
         <Box
-          style={[{marginVertical: 3, marginHorizontal: 1.5, height: 190}]}
+          style={[{marginVertical: 3, marginHorizontal: 1.5, height: 200}]}
           borderWidth="1"
-          borderRadius={20}
+          borderRadius={50}
           margin={2}
           backgroundColor={randomColor}
           padding="10"
@@ -100,25 +100,25 @@ export const RoomListItem = observer(
             <HStack justifyContent="space-between" height="100%">
               
 
-              <VStack justifyContent={"center"} flex={0.2}>
+              <VStack flex={1} justifyContent={"center"} >
               </VStack>
               <View style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
               <Text
-                  style={{position: "absolute", paddingHorizontal: 10, top: -12 }}
+                  style={{top: 0}}
                   numberOfLines={1}
-                  fontSize={hp("3%")}
+                  fontSize={20}
+                  paddingBottom={1}
                   fontFamily={textStyles.semiBoldFont}
                   accessibilityLabel="Name"
                   _dark={{
                     color: "warmGray.50",
                   }}
                   color="white"
-                  flex={1}
                   justifyContent={"center"}
                   alignItems={"center"}
                   backgroundColor={randomColor}
                 >                   
-                {name}
+                {name} 
               </Text>
               
                 <RoomListItemIcon
@@ -133,6 +133,7 @@ export const RoomListItem = observer(
                   <HStack
                     accessibilityLabel="Last message"
                     flex={1}
+                    backgroundColor={randomColor}
                     alignItems={"center"}
                     space={1}
                   >
@@ -153,6 +154,7 @@ export const RoomListItem = observer(
                       <Text
                         fontFamily={textStyles.regularFont}
                         fontSize={hp("1.7%")}
+                        background={randomColor}
                         accessibilityLabel={"Last Message"}
                         color="white"
                         _dark={{
@@ -181,7 +183,7 @@ export const RoomListItem = observer(
                 )}
               </View>
               </View>
-              <VStack justifyContent={"center"} flex={0.25}>
+              <VStack justifyContent={"center"} flex={1}>
                 <HStack
                   accessibilityLabel="Participants"
                   justifyContent={"flex-end"}
@@ -213,7 +215,7 @@ export const RoomListItem = observer(
                       color: "warmGray.50",
                     }}
                     fontFamily={textStyles.mediumFont}
-                    color="black"
+                    color="white"
                   >
                     {getTime(room?.lastMessageTime)}
                   </Text>

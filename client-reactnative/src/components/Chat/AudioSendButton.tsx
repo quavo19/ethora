@@ -46,7 +46,7 @@ export const AudioSendButton: React.FC<IAudioSendButton> = ({
 };
 const styles = StyleSheet.create({
   normalButtonState: {
-    backgroundColor: commonColors.primaryDarkColor,
+    backgroundColor: "gray",
     borderRadius: 100,
     padding: 5,
     marginRight: 5,

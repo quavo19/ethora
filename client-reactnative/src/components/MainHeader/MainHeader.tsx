@@ -119,7 +119,7 @@ export const MainHeader = observer(() => {
       }}
       height={hp('9%')}
       justifyContent={'center'}
-      bgColor={commonColors.primaryColor}>
+      bgColor={'gray.500'}>
       <HStack space={3} alignItems="center" justifyContent="space-between">
         <VStack>
           <HStack>
