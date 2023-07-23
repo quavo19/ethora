@@ -24,8 +24,8 @@ export const RoomListItemIcon = observer(
       <Box
         shadow={'2'}
         backgroundColor={"gray.500"}
-        height={hp('17.54%')}
-        width={hp('17.54%')}
+        height={hp('5%')}
+        width={hp('5%')}
         flexDirection={'row'}
         justifyContent={'center'}
         alignItems={'center'}
@@ -41,8 +41,8 @@ export const RoomListItemIcon = observer(
             }}
             resizeMode={FastImage.resizeMode.cover}
             style={{
-              width: hp('15.54%'),
-              height: hp('15.54%'),
+              width: hp('4%'),
+              height: hp('4%'),
               borderRadius: hp('50.7%'),
             }}
           />
