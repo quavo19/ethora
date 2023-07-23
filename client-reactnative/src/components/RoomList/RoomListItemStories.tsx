@@ -22,7 +22,7 @@ export default function RoomListItemStory() {
         {
           media: 'https://shorturl.at/jpJ58',
           mediaType: 'image',
-          duration: 12000
+          // duration: 12000
         },
         {
           media: 'https://shorturl.at/ckvyT',
@@ -33,14 +33,14 @@ export default function RoomListItemStory() {
     {
       profileImage:
         'https://shorturl.at/fhUV1',
-      profileName: 'Abdullah Ansari',
+      profileName: 'donald',
       viewed: false,
       id: 2,
       stories: [
         {
           media: 'https://shorturl.at/jpJ58',
           mediaType: 'image',
-          duration: 12000
+          // duration: 12000
         },
         {
           media: 'https://shorturl.at/mpwQ1',
@@ -89,7 +89,7 @@ export default function RoomListItemStory() {
           </View>
           <View style={styles.iconContainer}>
             {/* THE CLOSE BUTTON */}
-            <Pressable style={{ marginLeft: 12 }} onPress={() => setCurrentStoryIndex(null)}>
+            <Pressable style={{ marginLeft: 12 }} onPress={() => setCurrentStoryIndex(1)}>
               <Close height={28} width={28} fill={"#fff"} stroke={"#fff"} />
             </Pressable>
             {/* END OF CLOSE BUTTON */}
@@ -107,7 +107,15 @@ export default function RoomListItemStory() {
   const handlePrevious = () => {
     console.log("went to prev")
   };
-  
+  const handleAllStoriesEnd = () => {
+    if (currentStoryIndex === null) {
+      setCurrentStoryIndex(0); // Start showing the first story
+    } else if (currentStoryIndex < data.length - 1) {
+      setCurrentStoryIndex(currentStoryIndex + 1); // Move to the next story
+    } else {
+      setCurrentStoryIndex(null); // Close the story view when all stories are finished
+    }
+  };
   return (
     <SafeAreaView 
      style={{
@@ -149,7 +157,7 @@ export default function RoomListItemStory() {
           //called when user taps on previous
           onPrevious={() => handleNext()}
           // close story view if there are no more stories to go next to
-          onAllStoriesEnd={() => setCurrentStoryIndex(null)}
+          onAllStoriesEnd={handleAllStoriesEnd}
           //close story view if there are no more stories to go back to
           onPreviousFirstStory={() => setCurrentStoryIndex(null)}
           //custom loading component
