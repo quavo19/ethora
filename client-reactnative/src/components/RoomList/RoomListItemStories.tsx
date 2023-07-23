@@ -2,56 +2,55 @@ import Close from '../../assets/close'
 //import { LinearGradient } from 'expo-linear-gradient';
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, SafeAreaView, Pressable, View, Image, Text, Dimensions, StatusBar, ScrollView, Platform } from 'react-native';
-import Stories from 'rn-story';
+import ExpoInstaStory from 'expo-insta-story';
 const { width } = Dimensions.get('window');
 
 export default function RoomListItemStory() {
-  const [data, setData] = useState<Data[]>([
+  const data = [
     {
-      profileImage:
-        'https://shorturl.at/fhUV1',
-      profileName: 'Abdullah Ansari',
-      viewed: false,
       id: 1,
+      avatar_image:
+        'https://pbs.twimg.com/profile_images/1222140802475773952/61OmyINj.jpg',
+      user_name: 'Muhammad Bilal',
       stories: [
         {
-          media: 'https://shorturl.at/mpwQ1',
-          mediaType: 'image',
-          seeMoreUrl: 'https://abdullahansari.me'
+          story_id: 1,
+          story:
+            'https://image.freepik.com/free-vector/universe-mobile-wallpaper-with-planets_79603-600.jpg',
+          swipeText: 'Custom swipe text for this story',
+          onPress: () => console.log('story 1 swiped'),
+          duration: 10, //This tells the duration of each screen
         },
         {
-          media: 'https://shorturl.at/jpJ58',
-          mediaType: 'image',
-          // duration: 12000
         },
-        {
-          media: 'https://shorturl.at/ckvyT',
-          mediaType: 'image',
-        },
-      ]
+      ],
     },
     {
-      profileImage:
-        'https://shorturl.at/fhUV1',
-      profileName: 'donald',
-      viewed: false,
       id: 2,
+      avatar_image:
+        'https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80',
+      user_name: 'Test User',
       stories: [
         {
-          media: 'https://shorturl.at/jpJ58',
-          mediaType: 'image',
-          // duration: 12000
+          story_id: 1,
+          story:
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjORKvjcbMRGYPR3QIs3MofoWkD4wHzRd_eg&usqp=CAU',
+          swipeText: 'Custom swipe text for this story',
+          onPress: () => console.log('story 1 swiped'),
+          duration: 10,
         },
         {
-          media: 'https://shorturl.at/mpwQ1',
-          mediaType: 'image',
-          seeMoreUrl: 'https://abdullahansari.me'
+          story_id: 2,
+          story: 'https://demo-link/123-123-123.mp4',
+          swipeText: 'Custom swipe text for this story',
+          onPress: () => console.log('story 2 swiped'),
+          duration: 10,
+          /* This indicates that this item is a video,
+             when passing a video urlm this field must be added
+          */
+          isVideo: true,
         },
-        {
-          media: 'https://shorturl.at/ckvyT',
-          mediaType: 'image',
-        },
-      ]
+      ],
     },
     
     
