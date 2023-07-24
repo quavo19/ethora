@@ -82,29 +82,50 @@ export const RoomListItem = observer(
     };
     return (
       <View>
-        <MultiStoryScreen navigateToChat={navigateToChat()} />
         <Box
-          style={[{marginVertical: 3, marginHorizontal: 1.5, height: 250}]}
-          borderWidth="1"
-          borderRadius={30}
-          margin={2}
-          backgroundColor={randomColor}
-          padding="10"
-          _dark={{
-            borderColor: "gray.600",
-          }}
-          pl="4"
-          pr="5"
-          py="2"
+        style={[{marginVertical: 3, marginHorizontal: 1.5, height: 260}]}
+        borderWidth="1"
+        borderRadius={30}
+        margin={2}
+        backgroundColor={randomColor}
+        padding="10"
+        _dark={{
+          borderColor: "gray.600",
+        }}
+        pl="4"
+        pr="5"
+        py="2"
         >
-          <TouchableOpacity onPress={navigateToChat}>
-            <HStack justifyContent="space-between" height="100%">
-              
+          <View style={{
+            display: "flex",
 
-              <VStack flex={1} justifyContent={"center"} >
-              </VStack>
-              <View style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                <View style={styles.NameIcon}>
+          }}>
+               <Box 
+               flex={1}
+               justifyContent={"center"}
+               alignItems={"center"}
+               >
+                  <Text
+                  style={{
+                    position: "absolute",
+                    top: -15,
+                    backgroundColor: randomColor,
+                    padding: 2,
+                    borderRadius: 10,
+                  }}
+                    
+                    fontSize="xs"
+                    _dark={{
+                      color: "warmGray.50",
+                    }}
+                    fontFamily={textStyles.mediumFont}
+                    color="white"
+                  >
+                   last Active {getTime(room?.lastMessageTime)}
+                  </Text>
+                </Box>
+          </View>
+          <View style={styles.NameIcon}>
                 <RoomListItemIcon
                   name={name}
                   jid={jid}
@@ -113,6 +134,7 @@ export const RoomListItem = observer(
                   <Text
                   shadow={'2'}
                   width={hp('35%')}
+                  height={hp('3%')}
                   textAlign={'left'}
                   paddingLeft={2}
                   numberOfLines={1}
@@ -130,86 +152,15 @@ export const RoomListItem = observer(
                 >                   
                 {name}
               </Text>
-              
-                </View>
-              
-              
-                
-                <View
-                 style={{position: "absolute", paddingHorizontal: 10, bottom: -7, }}
-                >
-              {name && room?.lastUserName && room?.lastUserText && room?.lastUserAvatar ? (
-                  <HStack
-                    accessibilityLabel="Last message"
-                    flex={1}
-                    backgroundColor={randomColor}
-                    alignItems={"center"}
-                    space={1}
-                  >
-                    <Box style={styles.lastAvatarContainer}>
-                      <Image
-                      source={{
-                        uri: room?.lastUserAvatar,
-                      }}
-                      
-                          resizeMode="contain"
-                          style={styles.lastAvatar}
-                        />
-                      <Text
-                        fontFamily={textStyles.semiBoldFont}
-                        fontSize={hp("1.7%")}
-                        color="white"
-                        _dark={{
-                          color: "warmGray.100",
-                        }}
-                      >
-                       
-                        {room?.lastUserName && room?.lastUserName }
-                      </Text>
-                    </Box>
-
-                    <Box style={{
-                          position: "absolute",
-                          top: -10,
-                          flexDirection: 'row',
-                          flexWrap: 'wrap',
-                          maxWidth: "99%",
-                        }}>
-                          {room?.lastUserText.length > 50
-                            ? removeStringSplits(room?.lastUserText)?.slice(0, 10).split(' ').map((word, index) => (
-                              <Box key={index} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', paddingHorizontal: 2 }}>
-                                <Text
-                                  fontFamily={textStyles.regularFont}
-                                  fontSize={hp("1.7%")}
-                                  accessibilityLabel={"Last Message"}
-                                  color="white"
-                                  _dark={{
-                                    color: "warmGray.100",
-                                  }}
-                                >
-                                  {word + ' '}
-                                </Text>
-                              </Box>
-                            )) + "..."
-                            : removeStringSplits(room?.lastUserText)?.split(' ').map((word, index) => (
-                              <Box key={index} style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', paddingHorizontal: 2 }}>
-                                <Text
-                                  fontFamily={textStyles.regularFont}
-                                  fontSize={hp("1.7%")}
-                                  accessibilityLabel={"Last Message"}
-                                  color="white"
-                                  _dark={{
-                                    color: "warmGray.100",
-                                  }}
-                                >
-                                  {word + ' '}
-                                </Text>
-                              </Box>
-                            ))}
-                        </Box>
-
-
-                  </HStack>
+            </View>
+            <View style={{
+              paddingTop: 20,
+              height: hp("18.54%")
+            }}>
+            {room?.lastUserText ? (
+                  
+                    <MultiStoryScreen />
+                  
                 ) : (
                   <Text
                     color="coolGray.600"
@@ -221,47 +172,12 @@ export const RoomListItem = observer(
                     {defaultText}
                   </Text>
                 )}
-              </View>
-              </View>
-              <VStack justifyContent={"center"} flex={1}>
-                <HStack
-                  
-                  accessibilityLabel="Participants"
-                  justifyContent={"flex-end"}
-                  alignItems={"center"}
-                >
-                  <View
-                  style={{
-                    paddingTop: 200
-                  }}
-                  >
-                    <People members={participants}/>
-                  </View>
-                </HStack>
-                <Box alignItems={"flex-end"} accessibilityLabel="Updated">
-                  <Text
-                  style={{
-                    position: "absolute",
-                    top: -250,
-                    left: -50,
-                    backgroundColor: randomColor,
-                    padding: 5,
-                    borderRadius: 10,
-                  }}
-                    
-                    fontSize="xs"
-                    _dark={{
-                      color: "warmGray.50",
-                    }}
-                    fontFamily={textStyles.mediumFont}
-                    color="white"
-                  >
-                   last Active {getTime(room?.lastMessageTime)}
-                  </Text>
-                </Box>
-              </VStack>
-            </HStack>
-          </TouchableOpacity>
+            </View>
+            <View style={{
+              paddingLeft: 10
+            }}>
+            <People members={participants}/>
+            </View>
         </Box>
       </View>
     );
@@ -276,8 +192,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-    position: 'absolute',
-    top: 12,
+    paddingTop: 20,
+
   },
   lastAvatar: {
     width: 120,

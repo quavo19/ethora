@@ -6,7 +6,7 @@ import { FooterProps } from './types';
 
 const Footer = ({ userStories, story, progressIndex }: FooterProps) => (
   <View>
-    <Text style={{color: "white"}}>skdhfjg</Text>
+    <Text style={{color: "white"}}>send</Text>
   </View>
 );
 

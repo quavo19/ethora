@@ -9,22 +9,13 @@ import {
 import { stories, Strings } from '../../constants';
 import { Header, Footer } from '../../components';
 import { Colors } from '../../theme';
-import Images from '../../assets';
 import styles from './styles';
 
-const MultiStoryScreen = (visible, userStoryIndex) => {
+const MultiStoryScreen = () => {
   const multiStoryRef = useRef<MultiStoryRef>(null);
-  const [pressedIndex, setPressedIndex] = useState(0);
-  const [isStoryViewVisible, setIsStoryViewVisible] = useState(true);
-
   const [userStories, setUserStories] = useState(
     JSON.parse(JSON.stringify(stories))
   );
-
-  useEffect(() => {
-    setPressedIndex(userStoryIndex);
-    setIsStoryViewVisible(visible);
-  }, [visible, userStoryIndex]);
 
   const onStoryClose = (viewedStories?: Array<boolean[]>) => {
     if (viewedStories == null || viewedStories == undefined) return;
@@ -40,20 +31,21 @@ const MultiStoryScreen = (visible, userStoryIndex) => {
 
   return (
       <View>
-    
+      
     <MultiStory
           stories={userStories}
           transitionMode={TransitionMode.Cube}
           ItemSeparatorComponent={() => <View style={styles.separator} />}
-          ref={multiStoryRef}
-          /* callback after multi story is closed
-            `viewedStories` contains multi dimension array of booleans whether story is seen or not
-          */
+          ref={multiStoryRef}       
           onComplete={onStoryClose}
           avatarProps={{
             viewedStoryContainerStyle: {
-              borderColor: Colors.lightGrey
-            }
+              
+              borderRadius: 0
+            },
+            userNameStyle: { fontSize: 16 },
+            userImageStyle: { borderRadius: 0},
+            containerStyle: {borderRadius: 0, height: 130, width: 120, borderWidth: 0}
           }}
           storyContainerProps={{
             renderHeaderComponent: ({ userStories }) => (

@@ -91,7 +91,7 @@ const stories = [
   },
   {
     id: 4,
-    username: 'Shakira',
+    username: 'Shakira',    
     profile:
       'https://ichef.bbci.co.uk/news/976/cpsprodpb/9A9B/production/_116497593_gettyimages-971720370.jpg',
     title: 'Albums',
@@ -133,7 +133,35 @@ const stories = [
         isSeen: false
       }
     ]
-  }
+  },
+  {
+    id: 6,
+    username: 'donald',
+    profile:
+      'https://ichef.bbci.co.uk/news/976/cpsprodpb/9A9B/production/_116497593_gettyimages-971720370.jpg',
+    title: 'Albums',
+    allStories: false,
+    stories: [
+      {
+        id: 0,
+        url: 'https://i.discogs.com/xCYSQK3tBLUJqmoqi08VLPBCIPMX1J-TKSaohDaOwFc/rs:fit/g:sm/q:90/h:491/w:486/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ3NDM3/MjAtMTM3NDA5ODE4/Ny05MDYyLmpwZWc.jpeg',
+        type: 'image',
+        duration: 5,
+        isReadMore: true,
+        storyId: 4,
+        isSeen: false
+      },
+      {
+        id: 1,
+        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-amD7xS8_-BzQbfUSRiPx8ciTEg34PMJpfg&usqp=CAU',
+        type: 'image',
+        duration: 10,
+        isReadMore: true,
+        storyId: 4,
+        isSeen: false
+      }
+    ]
+  },
 ];
 
 export default stories;
