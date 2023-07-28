@@ -8,7 +8,7 @@ Note: linked open-source libraries and components may be subject to their own li
 import {useNavigation} from '@react-navigation/native';
 import {Box, Divider, Menu} from 'native-base';
 import React, {useState} from 'react';
-import {Image, TouchableOpacity, View} from 'react-native';
+import {Button, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
@@ -21,12 +21,15 @@ import SubMenu from './SubMenu';
 import {HomeStackNavigationProp} from '../../navigation/types';
 import {homeStackRoutes} from '../../navigation/routes';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { styles } from '../storyView/theme';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 export interface IMenuItem {
   value: string;
   label: string;
   visible: boolean;
   testID: string;
+  icon: string;
 }
 [];
 
@@ -38,42 +41,47 @@ export const HeaderMenu = () => {
   const {loginStore, debugStore} = useStores();
 
   const AccountMenuItems: IMenuItem[] = [
-    {value: homeStackRoutes.ProfileScreen, label: 'My profile', visible: true, testID: "itemProfileScreen"},
+    {value: homeStackRoutes.ProfileScreen, label: 'My profile', visible: true, testID: "itemProfileScreen", icon: require('../../assets/Profile.png')},
     {
       value: homeStackRoutes.TransactionsScreen,
       label: 'Transactions',
       visible: true,
-      testID: "itemTransaction"
+      testID: "itemTransaction",
+      icon: require('../../assets/PaperDocument.png')
     },
     // {value: homeStackRoutes.ACCOUNT, label: 'E-mails', visible: true},
     {
       value: homeStackRoutes.InviteFriendsScreen,
       label: 'Referrals',
       visible: true,
-      testID: "itemReferrals"
+      testID: "itemReferrals",
+      icon: require('../../assets/People.png')
     },
     {
       value: homeStackRoutes.CoinPurchaseScreen,
       label: 'Buy coins',
       visible: true,
-      testID: "itemBuyCoins"
+      testID: "itemBuyCoins",
+      icon: require('../../assets/Bag.png')
     },
   ];
 
   const ActionsMenuItems: IMenuItem[] = [
-    {value: homeStackRoutes.NewChatScreen, label: 'New room', visible: true, testID: "itemNewRoom"},
-    {value: homeStackRoutes.ScanScreen, label: 'QR Scan', visible: true, testID: "itemScanScreen"},
+    {value: homeStackRoutes.NewChatScreen, label: 'New room', visible: true, testID: "itemNewRoom", icon: require('../../assets/Notes.png')},
+    {value: homeStackRoutes.ScanScreen, label: 'QR Scan', visible: true, testID: "itemScanScreen", icon: require('../../assets/QRScanner.png')},
     {
       value: homeStackRoutes.MintScreen,
       label: 'Mint items',
       visible: itemsMintingAllowed && configNFT,
-      testID: "itemMintItems"
+      testID: "itemMintItems",
+      icon: require('../../assets/Tablet.png')
     },
     {
       value: homeStackRoutes.UploadDocumentsScreen,
       label: 'Upload Document',
       visible: configDocuments,
-      testID: "itemUploadDocument"
+      testID: "itemUploadDocument",
+      icon: require('../../assets/Document.png')
     },
   ];
 
@@ -82,22 +90,25 @@ export const HeaderMenu = () => {
       value: homeStackRoutes.PrivacyAndDataScreen,
       label: 'Privacy and Data',
       visible: true,
-      testID: "itemPrivacyData"
+      testID: "itemPrivacyData",
+      icon: require('../../assets/Info.png')
     },
     {
       value: homeStackRoutes.AuthenticationScreen,
       label: 'Authentication',
       visible: true,
-      testID: "itemAuthentication"
+      testID: "itemAuthentication",
+      icon: require('../../assets/Locked.png')
     },
 
     {
       value: homeStackRoutes.DebugScreen,
       label: 'Debug',
       visible: debugStore.debugMode,
-      testID: "itemDebug"
+      testID: "itemDebug",
+      icon: require('../../assets/menuneon.png')
     },
-    {value: LOGOUT, label: 'Sign out', visible: true, testID: "itemTransaction"},
+    // {value: LOGOUT, label: 'Sign out', visible: true, testID: "itemTransaction"},
   ];
 
   const toggleMenu = () => {
@@ -122,6 +133,7 @@ export const HeaderMenu = () => {
           width: 0,
           height: 5,
         },
+        
         shadowOpacity: 0.7,
         shadowRadius: 6.27,
 
@@ -132,9 +144,10 @@ export const HeaderMenu = () => {
         accessibilityLabel="Menu"
         width={hp("40%")}
         testID='mainHeaderMenu'
-        marginBottom={20}
-        marginLeft={7}
+        marginBottom={4}
+        marginLeft={0}
         isOpen={open}
+        backgroundColor={'rgba(0, 0, 0, 0.9)'}
         placement={'bottom'}
         onClose={() => setOpen(false)}
         trigger={triggerProps => {
@@ -155,9 +168,13 @@ export const HeaderMenu = () => {
             </TouchableOpacity>
           );
         }}>
+          <ScrollView style={{ backgroundColor: "rgba(0, 0, 0, 0.9)", }}>
         <SafeAreaView style={{
-          backgroundColor: "white",
-          height: hp("75%")
+        
+          
+          
+          borderBottomRightRadius: 50,
+          borderTopRightRadius: 50
         }}>
         <SubMenu
           title="ACCOUNT"
@@ -176,8 +193,51 @@ export const HeaderMenu = () => {
           menuItems={SystemMenuItems}
           onMenuItemPress={onMenuItemPress}
         />
+        <TouchableOpacity
+          onPress={() => onMenuItemPress(LOGOUT)}
+          style={[
+            style.appButtonContainer,
+           {marginTop: 50, margin: 10}
+
+          ]}
+        >
+          <Image
+          style={{
+            width: 25,
+            height: 25,
+            transform: [{ rotate: '90deg' }],
+          }}
+          source={require("../../assets/logout.png")}
+          />
+          
+          <Text style={[style.appButtonText, { fontSize: 18 }]}>
+          Sign out
+          </Text>
+        </TouchableOpacity>
         </SafeAreaView>
+        </ScrollView>
       </Menu>
     </Box>
   );
 };
+const style = StyleSheet.create({
+  
+  appButtonContainer: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    elevation: 8,
+    backgroundColor: "rgba(40,40,40, 0.9)",
+    borderRadius: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 12
+  },
+  appButtonText: {
+    color: "#fff",
+    fontWeight: "bold",
+    alignSelf: "center",
+    textTransform: "uppercase",
+    padding: 8
+  }
+});
