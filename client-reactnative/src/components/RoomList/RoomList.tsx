@@ -33,8 +33,7 @@ export const RoomList:React.FC<IRoomList> = observer((props:IRoomList) => {
   return (
     <>
       <View style={{
-        backgroundColor: "rgba(0, 0, 0, 0.9)",
-        paddingTop: 70
+        backgroundColor: "black",
       }} justifyContent={'center'} alignItems={'center'} w={'full'}>
       <CreateNewChatButton
           onPress={() => navigation.navigate('NewChatScreen')}
@@ -45,19 +44,24 @@ export const RoomList:React.FC<IRoomList> = observer((props:IRoomList) => {
           data={sortedRoomsList}
           keyExtractor={(item: any) => `${item.jid}`}
           renderItem={({item, index}) => {
+            const isFirstItem = index === 0;
+            const itemStyle = isFirstItem ? { paddingTop: 50 } : {};
             return (
-              <RoomListItem
-                index={index}
-                length={sortedRoomsList.length}
-                counter={item.counter}
-                jid={item.jid}
-                name={item.name}
-                participants={item.participants}
-                key={item.jid}
-              />
+              <View style={itemStyle}>
+                <RoomListItem
+                  index={index}
+                  length={sortedRoomsList.length}
+                  counter={item.counter}
+                  jid={item.jid}
+                  name={item.name}
+                  participants={item.participants}
+                  key={item.jid}
+                />
+              </View>
             );
           }}
         />
+
         
       </View>
     </>

@@ -8,7 +8,7 @@ Note: linked open-source libraries and components may be subject to their own li
 import {useNavigation} from '@react-navigation/native';
 import {Box, Divider, Menu} from 'native-base';
 import React, {useState} from 'react';
-import {TouchableOpacity} from 'react-native';
+import {Image, TouchableOpacity, View} from 'react-native';
 import Icon from 'react-native-vector-icons/Entypo';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {
@@ -20,6 +20,7 @@ import {useStores} from '../../stores/context';
 import SubMenu from './SubMenu';
 import {HomeStackNavigationProp} from '../../navigation/types';
 import {homeStackRoutes} from '../../navigation/routes';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export interface IMenuItem {
   value: string;
@@ -129,8 +130,10 @@ export const HeaderMenu = () => {
       justifyContent={'center'}>
       <Menu
         accessibilityLabel="Menu"
-        w="190"
+        width={hp("40%")}
         testID='mainHeaderMenu'
+        marginBottom={20}
+        marginLeft={7}
         isOpen={open}
         placement={'bottom'}
         onClose={() => setOpen(false)}
@@ -142,9 +145,19 @@ export const HeaderMenu = () => {
               style={{zIndex: 99999}}
               onPress={() => toggleMenu()}
               accessibilityLabel="More options menu">
-              <Icon name="menu" color="#FFFFFF" size={hp('3%')} />
+                <Image 
+                  style={{
+                    height: hp('7%'),
+                    width: 80,
+                    
+                  }}
+                  source={require('../../assets/menuneon.png')} />
             </TouchableOpacity>
           );
+        }}>
+        <SafeAreaView style={{
+          backgroundColor: "white",
+          height: hp("75%")
         }}>
         <SubMenu
           title="ACCOUNT"
@@ -163,6 +176,7 @@ export const HeaderMenu = () => {
           menuItems={SystemMenuItems}
           onMenuItemPress={onMenuItemPress}
         />
+        </SafeAreaView>
       </Menu>
     </Box>
   );

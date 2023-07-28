@@ -53,9 +53,6 @@ image: {
     height: 30,
     marginLeft: -6,
     borderRadius: 24,
-    borderColor: "#fff",
-    borderWidth: 2
-
 },
 overlayContainer: {
     position: 'absolute',

@@ -31,7 +31,7 @@ import { httpPost } from "../../config/apiService";
 import FastImage from "react-native-fast-image";
 import { uploadFiles } from "../../helpers/uploadFiles";
 import { fileUpload } from "../../config/routesConstants";
-import { Alert } from "react-native";
+import { Alert, Text } from "react-native";
 import { HomeStackNavigationProp } from "../../navigation/types";
 
 interface NewChatScreenProps {}
@@ -168,7 +168,11 @@ const NewChatScreen = (props: NewChatScreenProps) => {
     });
   };
   return (
-    <View testID="NewChatScreen">
+    <View style={{
+      backgroundColor: "black",
+      height: "100%",
+      paddingTop: 70
+    }} testID="NewChatScreen">
       <SecondaryHeader title="Create new chat" />
       <View margin={5}>
         <HStack>
@@ -177,7 +181,7 @@ const NewChatScreen = (props: NewChatScreenProps) => {
               w={wp("15%")}
               h={wp("15%")}
               borderRadius={wp("15%") / 2}
-              borderColor={commonColors.primaryColor}
+              borderColor={"white"}
               borderWidth={1}
               bg="transparent"
               justifyContent="center"
@@ -198,7 +202,7 @@ const NewChatScreen = (props: NewChatScreenProps) => {
                   as={SimpleLineIcons}
                   name="camera"
                   size={hp("3.5%")}
-                  color={commonColors.primaryColor}
+                  color={"white"}
                 />
               )}
             </Button>
@@ -210,15 +214,17 @@ const NewChatScreen = (props: NewChatScreenProps) => {
             }}
             onChangeText={(text) => setChatName(text)}
             placeholder="Chat name"
-            placeholderTextColor={commonColors.primaryColor}
-            color="black"
-            borderWidth={1}
-            borderRadius={5}
-            borderColor={commonColors.primaryColor}
-            bg={commonColors.primaryColor + "26"}
+            placeholderTextColor={"white"}
+            color="white"
+            padding={5}
+            borderWidth={2}
+            borderRadius={50}
+            borderColor={"white"}
+            bg={"black" + "26"}
             height={wp("15%")}
             fontFamily={textStyles.lightFont}
-            fontSize={hp("1.8%")}
+            fontSize={hp("2.3%")}
+            fontWeight={600}
             flex={0.8}
           />
         </HStack>
@@ -228,32 +234,42 @@ const NewChatScreen = (props: NewChatScreenProps) => {
           scrollEnabled
           placeholder="Short description about the chat"
           onChangeText={(desc) => setChatDescription(desc)}
-          placeholderTextColor={commonColors.primaryColor}
+          placeholderTextColor={"white"}
           multiline
-          color={"black"}
-          borderWidth={1}
+          color={"white"}
+          borderWidth={2}
           h={wp("35%")}
-          borderColor={commonColors.primaryColor}
+          borderColor={"white"}
           bg={commonColors.primaryColor + "26"}
-          borderRadius={5}
+          borderRadius={30}
+          padding={5}
           marginTop={5}
           fontFamily={textStyles.lightFont}
-          fontSize={hp("1.8%")}
+          fontSize={hp("2.3%")}
+          fontWeight={600}
           autoCompleteType={undefined}
         />
 
         <Button
           testID="createNewChat"
           onPress={handleCreateNewChat}
-          bg={commonColors.primaryColor}
-          borderRadius={5}
+          bg={"gray.700"}
+          borderRadius={30}
           h={hp("7%")}
           marginTop={5}
-          fontSize={hp("2%")}
+          fontSize={hp("2.3%")}
+          fontWeight={600}
           color="white"
-          fontFamily={textStyles.regularFont}
         >
+          <Text 
+          style={{
+            fontSize: hp("2.3%"),
+            fontWeight: "700",
+            color: "white"
+          }}>
           Create new chat
+          </Text>
+          
         </Button>
       </View>
     </View>

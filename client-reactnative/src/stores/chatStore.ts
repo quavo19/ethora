@@ -95,7 +95,6 @@ export interface roomListProps {
   counter: number;
   lastUserText: string;
   lastUserName: string;
-  lastUserAvatar: string;
   createdAt: string;
   priority?: number;
   muted?: boolean;

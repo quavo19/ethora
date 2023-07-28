@@ -11,16 +11,11 @@ import { Header, Footer } from '../../components';
 import { Colors } from '../../theme';
 import styles from './styles';
 
-const MultiStoryScreen = () => {
+const ChatMultiStoryScreen = () => {
   const multiStoryRef = useRef<MultiStoryRef>(null);
   const [userStories, setUserStories] = useState(
     JSON.parse(JSON.stringify(stories))
   );
-  useEffect(() => {
-    const initialStories = JSON.parse(JSON.stringify(stories));
-    const sortedStories = initialStories.sort((a, b) => b.allIsViewed - a.allIsViewed);
-    setUserStories(sortedStories);
-  }, []);
 
   const onStoryClose = (viewedStories?: Array<boolean[]>) => {
     if (viewedStories == null || viewedStories == undefined) return;
@@ -45,12 +40,12 @@ const MultiStoryScreen = () => {
           onComplete={onStoryClose}
           avatarProps={{
             viewedStoryContainerStyle: {
-              
-              borderWidth: 0
+              borderRadius: 0
             },
-            userNameStyle: { fontSize: 16, },
-            userImageStyle: { borderRadius: 20, height: 245, width: 181},
-            containerStyle: {borderRadius: 17, height: 240, width: 180, borderWidth: 0, borderColor: "gray", marginHorizontal: -8}
+            userNameStyle: { fontSize: 16 },
+            userImageStyle: { borderRadius: 20},
+            containerStyle: { borderWidth: 0, borderRadius: 20, height: 135, width: 110,},
+            
           }}
           storyContainerProps={{
             renderHeaderComponent: ({ userStories }) => (
@@ -69,4 +64,4 @@ const MultiStoryScreen = () => {
   );
 };
 
-export default MultiStoryScreen;
+export default ChatMultiStoryScreen;

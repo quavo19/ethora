@@ -8,7 +8,7 @@ Note: linked open-source libraries and components may be subject to their own li
 import {useNavigation, useRoute} from '@react-navigation/native';
 import {Badge, Box, HStack, View, VStack} from 'native-base';
 import React from 'react';
-import {StyleSheet} from 'react-native';
+import {Image, StyleSheet, Text} from 'react-native';
 import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import {commonColors, defaultMetaRoom, ROOM_KEYS} from '../../../docs/config';
 import {useStores} from '../../stores/context';
@@ -28,20 +28,23 @@ export const MainHeader = observer(() => {
   const buttons = [
     {
       key: ROOM_KEYS.official,
-      icon: 'star',
+      icon: require('../../assets/starneon.png'),
       show: true,
+      width: 130,
       accessibilityLabel: 'Starred chats',
     },
     {
       key: ROOM_KEYS.private,
-      icon: 'people',
+      icon: require('../../assets/groupneon.png'),
       show: true,
+      width: 130,
       accessibilityLabel: 'Other chats',
     },
     {
       key: ROOM_KEYS.groups,
-      icon: 'compass',
+      icon: require('../../assets/funnelneon.png'),
       show: true,
+      width: 120,
       accessibilityLabel: 'Meta',
     },
   ];
@@ -128,9 +131,9 @@ export const MainHeader = observer(() => {
       
       borderBottomRadius={20}
       bgColor={'rgba(0, 0, 0, 0.5)'}>
-      <HStack space={3} alignItems="center" justifyContent="space-between">
+      <HStack alignItems="center" >
         <VStack>
-          <HStack marginLeft={5}>
+          <HStack marginLeft={3} marginTop={2}>
             <HeaderMenu />
           </HStack>
         </VStack>
@@ -141,24 +144,12 @@ export const MainHeader = observer(() => {
               <TouchableOpacity
                 accessibilityLabel={item.accessibilityLabel}
                 onPress={async () => await onTabPress(item.key)}>
-                <Ionicons
+                <Image 
                   style={{
-                    shadowColor: '#000',
-                    shadowOffset: {
-                      width: 0,
-                      height: 5,
-                    },
-                    shadowOpacity: 0.5,
-                    shadowRadius: 6.27,
-
-                    elevation: 5,
+                    height: hp('9%'),
+                    width: 100,
                   }}
-                  name={item.icon}
-                  size={30}
-                  color={
-                   'rgba(255,255,255,0.6)'
-                  }
-                />
+                  source={item.icon} />
               </TouchableOpacity>
               {!!chatStore.unreadMessagesForGroups[item.key] && (
                 <View style={{position: 'absolute', right: -5, bottom: -4}}>

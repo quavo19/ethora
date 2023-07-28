@@ -24,8 +24,8 @@ export const RoomListItemIcon = observer(
       <Box
         shadow={'2'}
         backgroundColor={"gray.500"}
-        height={hp('5%')}
-        width={hp('5%')}
+        height={hp('3%')}
+        width={hp('3%')}
         flexDirection={'row'}
         justifyContent={'center'}
         alignItems={'center'}
@@ -41,8 +41,8 @@ export const RoomListItemIcon = observer(
             }}
             resizeMode={FastImage.resizeMode.cover}
             style={{
-              width: hp('4%'),
-              height: hp('4%'),
+              width: hp('3%'),
+              height: hp('3%'),
               borderRadius: hp('50.7%'),
             }}
           />
@@ -84,7 +84,6 @@ export const RoomListItemIcon = observer(
 
 const styles = StyleSheet.create({
   chatHomeItemIcon: {
-    borderWidth: 1,
     borderColor: commonColors.primaryDarkColor,
     backgroundColor: commonColors.primaryDarkColor,
     height: hp('5.54%'),

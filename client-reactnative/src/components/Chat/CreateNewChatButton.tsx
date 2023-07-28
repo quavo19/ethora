@@ -1,9 +1,9 @@
 import React from 'react';
 import {Box, HStack, Text, View} from 'native-base';
 import {heightPercentageToDP as hp, widthPercentageToDP as wp} from 'react-native-responsive-screen';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import {textStyles} from '../../../docs/config';
-import {TouchableOpacity} from 'react-native';
+import {Image, TouchableOpacity} from 'react-native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 export interface ICreateNewChatButton {
   onPress: () => void;
@@ -24,12 +24,20 @@ export const CreateNewChatButton: React.FC<ICreateNewChatButton> = ({
         <Box
           w={hp('5.5%')}
           h={hp('5.5%')}
-          bg={'#64BF7C'}
+          
           rounded="full"
           justifyContent={'center'}
           alignItems="center"
           marginRight={2}>
-          <AntDesign name="plus" color={'#FFF'} size={hp('4.3%')} />
+          <Image 
+                  style={{
+                    
+                    height: 90,
+                    width: 130,
+                    marginRight: 30
+                  }}
+                  source={require('../../assets/create.png')} />
+                 
         </Box>
       </HStack>
     </TouchableOpacity>
