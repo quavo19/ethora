@@ -144,7 +144,7 @@ export const ProfileTabs: React.FC<IProfileTabs> = ({
         )}
       </HStack>
 
-      <View style={{ marginBottom: hp("34%"), backgroundColor: "white" }}>
+      <View style={{ marginBottom: hp("34%"), backgroundColor: "black" }}>
         {activeAssetTab === 1 &&
           nftItems.length === 0 &&
           documents.length === 0 && (
