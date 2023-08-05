@@ -172,11 +172,12 @@ export const RoomListItem = observer(
                   <TouchableOpacity onPress={navigateToChat}>
                   <Image 
                   style={{
-                    height: hp('7%'),
-                    width: 85,
-                   
+                    height: hp('10%'),
+                    width: 90,
+                   position: "absolute",
+                   bottom: -37
                   }}
-                  source={require('../../assets/micneon.png')} />
+                  source={require('../../assets/mic.png')} />
                     </TouchableOpacity>
                 </View>
 
