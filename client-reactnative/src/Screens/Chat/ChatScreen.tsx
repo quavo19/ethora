@@ -4,7 +4,7 @@ import { StyleSheet, Text, Button, SafeAreaView } from "react-native";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { format } from "date-fns";
 import { useStores } from "../../stores/context";
-import ChatMultiStoryScreen from "../../components/storyView/modules/MultiStory/ChatMultiStoryScreen";
+import { MultiStoryScreen } from "../../components/storyView/modules";
 import { getRoomArchiveStanza, getPaginatedArchive } from "../../xmpp/stanzas";
 import ChatContainer from "../../components/Chat/ChatContainer";
 import ChatBottomSheet from "./ChatRoom";
@@ -107,10 +107,10 @@ const ChatScreen2 = observer(({ route }: any) => {
       <View style ={{
         position: "absolute",
         top: 70,
-        flexDirection: "column"
+        bottom: 0,
       }}>
-        <ChatMultiStoryScreen />
         
+        <MultiStoryScreen/>
       </View>
       <View style={styles.container}>
         <View
@@ -139,8 +139,8 @@ const ChatScreen2 = observer(({ route }: any) => {
 const styles = StyleSheet.create({
   container: {
     position: "relative",
-    top: 174,
-    height: "89%"
+    top: 280,
+    height: "83.5%"
   },
   safeArea: {
     backgroundColor: "black"
