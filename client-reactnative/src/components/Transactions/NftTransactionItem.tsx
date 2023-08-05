@@ -191,7 +191,7 @@ export const NftTransactionItem: React.FC<TransactionListProps> = ({
   return (
     <TouchableOpacity onPress={() => setExpanded(prev => !prev)}>
       {showDate && <TransactionsListitemDate date={formattedDate} />}
-      <Box borderColor="coolGray.200" borderWidth="1" p={'3'}>
+      <Box borderColor="rgba(50,50,50, 0.9)" borderWidth="1" p={'4'} marginBottom={3} borderRadius={14}>
         <HStack
           justifyContent={'space-between'}
           alignItems={'center'}
