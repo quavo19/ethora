@@ -76,7 +76,7 @@ const navbarLogoShow = false; //done
 
 // COLOUR THEME
 const commonColors = {
-  primaryColor: "gray",
+  primaryColor: "#000",
   primaryDarkColor: "#000",
   secondaryColor: "#000",
 }; //done
