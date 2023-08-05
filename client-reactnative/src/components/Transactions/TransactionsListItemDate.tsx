@@ -11,7 +11,7 @@ import React from 'react';
 export const TransactionsListitemDate = ({date}: {date: string}) => {
   return (
     <Box
-      bg={'gray.500'}
+      bg={'black'}
       w={'100%'}
       h={5}
       justifyContent={'center'}
