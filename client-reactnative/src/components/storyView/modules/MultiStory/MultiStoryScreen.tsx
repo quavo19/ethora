@@ -16,11 +16,7 @@ const MultiStoryScreen = () => {
   const [userStories, setUserStories] = useState(
     JSON.parse(JSON.stringify(stories))
   );
-  useEffect(() => {
-    const initialStories = JSON.parse(JSON.stringify(stories));
-    const sortedStories = initialStories.sort((a, b) => b.allIsViewed - a.allIsViewed);
-    setUserStories(sortedStories);
-  }, []);
+  
 
   const onStoryClose = (viewedStories?: Array<boolean[]>) => {
     if (viewedStories == null || viewedStories == undefined) return;
@@ -54,14 +50,19 @@ const MultiStoryScreen = () => {
           }}
           storyContainerProps={{
             renderHeaderComponent: ({ userStories }) => (
-              <Header {...{ userStories, multiStoryRef }} />
+              
+
+                <Header {...{ userStories, multiStoryRef }} />
+          
             ),
             renderFooterComponent: ({ userStories, story, progressIndex }) => (
               <Footer {...{ userStories, story, progressIndex }}/>
             ),
             renderIndicatorComponent: () => <Indicator />,
+            
             barStyle: {
-              barActiveColor: Colors.red
+              barActiveColor: "yellow",
+              barHeight: 6
             }
           }}
      />
