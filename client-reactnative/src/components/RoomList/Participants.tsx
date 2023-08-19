@@ -18,7 +18,7 @@ const ImageCmp = ({ overlay = false }) => {
 
 export const People = ({ members }) => {
   const count = Math.min(members, 3);
-  console.log(members)
+  
   return (
     <View style={styles.container}>
             {Array(count).fill(null).map((_, index) => (
