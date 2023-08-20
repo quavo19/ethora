@@ -27,6 +27,7 @@ import Feather from 'react-native-vector-icons/Feather';
 interface RoomListProps {
   jid: string;
   name: string;
+  onBottomSheetOpen: () => void;
   counter: number;
   participants: string | number;
   index: number;
@@ -59,7 +60,7 @@ const getTime = (time: Date | undefined) => {
   }
 };
 export const RoomListItem = observer(
-  ({ jid, name, participants }: RoomListProps) => {
+  ({ jid, name, participants, onBottomSheetOpen }: RoomListProps) => {
     
     const [randomColor, setRandomColor] = useState(getRandomColor());
     function getRandomColor() {
@@ -77,7 +78,6 @@ export const RoomListItem = observer(
     const defaultText = "Tap to view and join the conversation.";
 
     const navigateToChat = () => {
-      console.log("navigate")
       chatStore.updateBadgeCounter(jid, "CLEAR");
       //@ts-ignore
       navigation.navigate("ChatScreen", { chatJid: jid, chatName: name });
@@ -169,7 +169,7 @@ export const RoomListItem = observer(
                   </TouchableOpacity>
                 </View>
                 <View flex={0.3}>
-                  <TouchableOpacity onPress={navigateToChat}>
+                  <TouchableOpacity onPress={onBottomSheetOpen}>
                   <Image 
                   style={{
                     height: hp('10%'),
