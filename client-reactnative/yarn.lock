@@ -1800,6 +1800,11 @@
     eventemitter3 "^1.2.0"
     lodash "^4.17.15"
 
+"@react-native-community/blur@^4.3.2":
+  version "4.3.2"
+  resolved "https://registry.yarnpkg.com/@react-native-community/blur/-/blur-4.3.2.tgz#185a2c7dd03ba168cc95069bc4742e9505fd6c6c"
+  integrity sha512-0ID+pyZKdC4RdgC7HePxUQ6JmsbNrgz03u+6SgqYpmBoK/rE+7JffqIw7IEsfoKitLEcRNLGekIBsfwCqiEkew==
+
 "@react-native-community/checkbox@^0.5.12":
   version "0.5.16"
   resolved "https://registry.yarnpkg.com/@react-native-community/checkbox/-/checkbox-0.5.16.tgz#3265260e5fd961a4f032d0c088bbfbdfa96ee44e"
@@ -7755,6 +7760,11 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.4.0:
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
 
+lottie-react-native@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/lottie-react-native/-/lottie-react-native-6.2.0.tgz#b63d358ca4b112f23997f5fe8118b6ac4662a7ed"
+  integrity sha512-r0I+BPV2oC50/c5Lr41MmLJigH7TVrh4qu/ssWRj1UPpELxVwJlofbaN4mH91ruVw4LqB2mICbXVqUBVgoP64g==
+
 lru-cache@^4.0.1:
   version "4.1.5"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-4.1.5.tgz#8bbe50ea85bed59bc9e33dcab8235ee9bcf443cd"
@@ -9333,6 +9343,11 @@ react-native-blob-util@^0.16.2:
   dependencies:
     base-64 "0.1.0"
     glob "^7.2.3"
+
+react-native-bottom-sheet@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-bottom-sheet/-/react-native-bottom-sheet-1.0.3.tgz#1f9c8b5a29a492a82c7c4426b51858edeb87f880"
+  integrity sha512-FG02lkWYVS5HyqzsQF8edsfWkbjHa01hd8g/eNqrc+sBH1fCoi8GZTS8trHMsLdSGY2lZajb7MYSpM2Ltb3ZsA==
 
 react-native-camera@^4.2.1:
   version "4.2.1"
