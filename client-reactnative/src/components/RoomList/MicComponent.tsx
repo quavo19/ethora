@@ -64,11 +64,13 @@ const MicComponent = () => {
   const onPausePlay = async () => {
     await audioRecorderPlayer.pausePlayer();
     setIsPaused(true);
+    setIsPlaying(false);
   };
 
   const onResumePlay = async () => {
     await audioRecorderPlayer.resumePlayer();
     setIsPaused(false);
+    setIsPlaying(true);
   };
 
   useEffect(() => {

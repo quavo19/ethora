@@ -18,7 +18,6 @@ import { useStores } from "../../stores/context";
 import { MultiStoryScreen } from '../storyView/modules';
 import { format } from "date-fns";
 import dayjs from "dayjs";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { HomeStackNavigationProp } from "../../navigation/types";
 import { People } from './Participants';
 import Feather from 'react-native-vector-icons/Feather';
