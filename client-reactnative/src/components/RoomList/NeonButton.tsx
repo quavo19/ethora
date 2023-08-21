@@ -8,12 +8,12 @@ interface NeonButtonProps {
 
 const NeonButton: React.FC<NeonButtonProps> = ({ title, onPress }) => {
   return (
-    <TouchableOpacity onPress={onPress} style={{ height: 55 }}>
+    <TouchableOpacity onPress={onPress} style={{ height: 150, width: 200 }}>
       <Image 
        source={title}
        style={{
-        width: 290,
-        height: 90,
+        width: 200,
+        height: 150,
        }}
       />
     </TouchableOpacity>
