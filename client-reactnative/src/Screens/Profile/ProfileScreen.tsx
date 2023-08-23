@@ -60,7 +60,7 @@ export const ProfileScreen = observer(() => {
 
   const coinData = walletStore.balance;
 
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(1);
   const [activeAssetTab, setActiveAssetTab] = useState(1);
 
   const [itemsBalance, setItemsBalance] = useState(0);
@@ -302,14 +302,14 @@ export const ProfileScreen = observer(() => {
     }
   };
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
-      <View style={{ backgroundColor: primaryDarkColor, flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "black" }}>
+      <View style={{ backgroundColor: "black", flex: 1 }}>
         <SecondaryHeader
           title={"User's profile"}
           isQR
           onQRPressed={QRPressed}
           onBackPress={() =>
-            activeTab === 1 ? setActiveTab(0) : navigation.goBack()
+            activeTab === 0 ? setActiveTab(1) : navigation.goBack()
           }
         />
 
@@ -320,12 +320,17 @@ export const ProfileScreen = observer(() => {
             position={"absolute"}
             justifyContent={"center"}
             alignItems={"center"}
-            bgColor={primaryColor}
+            bgColor={'black'}
             borderRadius={hp("10.46%") / 2}
           >
             <TouchableOpacity
               onPress={onAvatarPress}
               accessibilityLabel="Photo"
+              style={{
+                borderWidth: 3,
+                borderColor: "black",
+                borderRadius: 50
+              }}
             >
               <Avatar
                 bg={commonColors.primaryColor}
@@ -345,7 +350,7 @@ export const ProfileScreen = observer(() => {
         </View>
         <VStack
           marginTop={hp("5.5%")}
-          bgColor={"#FBFBFB"}
+          
           style={{
             shadowColor: "#000",
             shadowOffset: {
@@ -354,7 +359,7 @@ export const ProfileScreen = observer(() => {
             },
             shadowOpacity: 0.9,
             shadowRadius: 6.27,
-
+            backgroundColor: "black",
             elevation: 5,
           }}
           borderTopLeftRadius={30}
@@ -365,7 +370,7 @@ export const ProfileScreen = observer(() => {
             style={{
               alignItems: "center",
               marginTop: hp("5.54%"),
-              backgroundColor: "white",
+              backgroundColor: "black",
             }}
           >
             <HStack alignItems={"center"}>
@@ -377,7 +382,7 @@ export const ProfileScreen = observer(() => {
                   style={{
                     fontSize: hp("2.216%"),
                     fontFamily: textStyles.mediumFont,
-                    color: "#000000",
+                    color: "white",
                   }}
                 >
                   {firstNameLocal} {lastNameLocal}
@@ -392,7 +397,7 @@ export const ProfileScreen = observer(() => {
                   style={{
                     fontSize: hp("2.216%"),
                     fontFamily: textStyles.mediumFont,
-                    color: commonColors.primaryColor,
+                    color: "white",
                   }}
                 >
                   (
@@ -400,7 +405,7 @@ export const ProfileScreen = observer(() => {
                     style={{
                       fontSize: hp("2.216%"),
                       fontFamily: textStyles.mediumFont,
-                      color: commonColors.primaryColor,
+                      color: "white",
                       textDecorationLine: "underline",
                     }}
                   >
@@ -425,7 +430,7 @@ export const ProfileScreen = observer(() => {
                     fontSize: hp("2.23%"),
                     fontFamily: textStyles.regularFont,
                     textAlign: "center",
-                    color: primaryColor,
+                    color: "white",
                   }}
                 >
                   {descriptionLocal && !isDescriptionEditable
@@ -439,7 +444,7 @@ export const ProfileScreen = observer(() => {
                 >
                   <AntIcon
                     name="edit"
-                    color={commonColors.primaryColor}
+                    color={"white"}
                     size={hp("2%")}
                   />
                 </TouchableOpacity>
@@ -447,7 +452,7 @@ export const ProfileScreen = observer(() => {
             </HStack>
           </View>
 
-          <View style={{ backgroundColor: "white" }}>{loadTabContent()}</View>
+          <View style={{ backgroundColor: "black" }}>{loadTabContent()}</View>
         </VStack>
       </View>
       <ProfileModal

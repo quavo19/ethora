@@ -1,10 +1,11 @@
 const stories = [
   {
     id: 1,
-    username: 'Alan',
+    username: 'Alane',
+    allIsViewed: true,
     title: 'Albums',
     profile:
-      'https://banner2.cleanpng.com/20190606/xch/kisspng-faded-music-mask-disc-jockey-darkside-5cf8dd7baf38c5.5844290115598134997177.jpg',
+      'https://wallpaperswide.com/download/aquaman_movie_jason_momoa-wallpaper-480x640.jpg',
     stories: [
       {
         id: 1,
@@ -38,8 +39,8 @@ const stories = [
   {
     id: 2,
     username: 'Weekend',
-    profile:
-      'https://sosugary.com/wp-content/uploads/2022/01/TheWeeknd_001.jpg',
+    allIsViewed: false,
+    profile: "https://images.static-bluray.com/products/20/76129_5_front.jpg",
     title: 'Album Launch',
     stories: [
       {
@@ -65,8 +66,8 @@ const stories = [
   {
     id: 3,
     username: 'Selena',
-    profile:
-      'https://assets.teenvogue.com/photos/589dcce16d33d9e97bc045d2/16:9/w_2560%2Cc_limit/GettyImages-587593904.jpg',
+    allIsViewed: true,
+    profile:"https://images.hdqwalls.com/download/optimus-prime-transformers-the-last-knight-5k-2a-1080x2280.jpg",
     title: 'Albums',
     stories: [
       {
@@ -91,9 +92,9 @@ const stories = [
   },
   {
     id: 4,
-    username: 'Shakira',    
-    profile:
-      'https://ichef.bbci.co.uk/news/976/cpsprodpb/9A9B/production/_116497593_gettyimages-971720370.jpg',
+    username: 'Shakira',
+    allIsViewed: false, 
+    profile: "https://images.wallpapersden.com/image/download/the-witcher-4k_a2xsa2yUmZqaraWkpJRobWVlrWpraGU.jpg",
     title: 'Albums',
     stories: [
       {
@@ -119,8 +120,9 @@ const stories = [
   {
     id: 5,
     username: "K'naan",
+    allIsViewed: false,
     profile:
-      'https://m.media-amazon.com/images/M/MV5BM2Q0NmVjZmEtZTJlNS00NGQ5LTkxYzAtODk5ZmI2MTZkZWMzXkEyXkFqcGdeQXVyMjA4OTI5NDQ@._V1_.jpg',
+      'https://marvelnewsdesk.com/wp-content/uploads/2023/02/Kang__scaled_800.jpg',
     title: 'Single Album',
     stories: [
       {
@@ -137,8 +139,38 @@ const stories = [
   {
     id: 6,
     username: 'donald',
+    allIsViewed: false,
     profile:
-      'https://ichef.bbci.co.uk/news/976/cpsprodpb/9A9B/production/_116497593_gettyimages-971720370.jpg',
+      'https://wallpapercave.com/wp/wp5529473.jpg',
+    title: 'Albums',
+    allStories: false,
+    stories: [
+      {
+        id: 0,
+        url: 'https://i.discogs.com/xCYSQK3tBLUJqmoqi08VLPBCIPMX1J-TKSaohDaOwFc/rs:fit/g:sm/q:90/h:491/w:486/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ3NDM3/MjAtMTM3NDA5ODE4/Ny05MDYyLmpwZWc.jpeg',
+        type: 'image',
+        duration: 5,
+        isReadMore: true,
+        storyId: 4,
+        isSeen: false
+      },
+      {
+        id: 1,
+        url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-amD7xS8_-BzQbfUSRiPx8ciTEg34PMJpfg&usqp=CAU',
+        type: 'image',
+        duration: 10,
+        isReadMore: true,
+        storyId: 4,
+        isSeen: false
+      }
+    ]
+  },
+  {
+    id: 7,
+    username: 'james dark',
+    allIsViewed: false,
+    profile:
+      'https://www.mordeo.org/files/uploads/2023/02/Ant-man-And-The-Wasp-Quantumania-2023-Movie-Poster-4K-Ultra-HD-Mobile-Wallpaper.jpg',
     title: 'Albums',
     allStories: false,
     stories: [

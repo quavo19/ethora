@@ -106,27 +106,17 @@ const ChatScreen2 = observer(({ route }: any) => {
       <SafeAreaView style={styles.safeArea}>
       <View style ={{
         position: "absolute",
-        height: 90,
-        
+        top: 70,
+        bottom: 0,
       }}>
-        <RoomListItemStory />
         
+        <MultiStoryScreen/>
       </View>
       <View style={styles.container}>
-        <View>
-        <Button title="Close" onPress={() => handleClosePress()} />
-        </View>
-        <Button title="open" onPress={() => handleSnapPress(2)} />
-      <BottomSheet
-        ref={sheetRef}
-        snapPoints={snapPoints}
-        onChange={handleSheetChange}
-      >
-        <BottomSheetView>
         <View
        style={{
         position: "relative",
-        height: "100%"
+        height: "100%",
         
        }} 
       >
@@ -139,8 +129,7 @@ const ChatScreen2 = observer(({ route }: any) => {
       />
       
       </View>
-        </BottomSheetView>
-      </BottomSheet>
+      
     </View>
     </SafeAreaView>
     </View>
@@ -149,13 +138,12 @@ const ChatScreen2 = observer(({ route }: any) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 200,
     position: "relative",
-    top: 170,
-    height: "88.2%"
+    top: 280,
+    height: "83.5%"
   },
   safeArea: {
-    zIndex:100000,
+    backgroundColor: "black"
   }
 });
 export default ChatScreen2;

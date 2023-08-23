@@ -16,6 +16,7 @@ const MultiStoryScreen = () => {
   const [userStories, setUserStories] = useState(
     JSON.parse(JSON.stringify(stories))
   );
+  
 
   const onStoryClose = (viewedStories?: Array<boolean[]>) => {
     if (viewedStories == null || viewedStories == undefined) return;
@@ -41,22 +42,27 @@ const MultiStoryScreen = () => {
           avatarProps={{
             viewedStoryContainerStyle: {
               
-              borderRadius: 0
+              borderWidth: 0
             },
-            userNameStyle: { fontSize: 16 },
-            userImageStyle: { borderRadius: 0},
-            containerStyle: {borderRadius: 0, height: 130, width: 120, borderWidth: 0}
+            userNameStyle: { fontSize: 16, },
+            userImageStyle: { borderRadius: 20, height: 245, width: 181},
+            containerStyle: {borderRadius: 17, height: 240, width: 180, borderWidth: 0, borderColor: "gray", marginHorizontal: -8}
           }}
           storyContainerProps={{
             renderHeaderComponent: ({ userStories }) => (
-              <Header {...{ userStories, multiStoryRef }} />
+              
+
+                <Header {...{ userStories, multiStoryRef }} />
+          
             ),
             renderFooterComponent: ({ userStories, story, progressIndex }) => (
               <Footer {...{ userStories, story, progressIndex }}/>
             ),
             renderIndicatorComponent: () => <Indicator />,
+            
             barStyle: {
-              barActiveColor: Colors.red
+              barActiveColor: "yellow",
+              barHeight: 6
             }
           }}
      />

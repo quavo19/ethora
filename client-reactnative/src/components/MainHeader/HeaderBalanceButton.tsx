@@ -23,7 +23,7 @@ export const HeaderBalanceButton = observer(() => {
   };
   return (
     <Box
-      background={'white'}
+      background={'rgba(0, 0, 0, 0.1)'}
       style={{
         shadowColor: '#000',
         shadowOffset: {
@@ -47,7 +47,7 @@ export const HeaderBalanceButton = observer(() => {
         <Box>
           <Image
             alt="coin icon"
-            style={{width: hp('3%'), height: hp('3%')}}
+            style={{width: 150, height: hp('3%'),}}
             source={coinImagePath}
           />
         </Box>

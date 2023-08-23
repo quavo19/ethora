@@ -9,7 +9,7 @@ buildscript {
         compileSdkVersion = 31
         targetSdkVersion = 31
         androidXCore = "1.7.0"
-        kotlinVersion = '1.5.0'
+        kotlinVersion = '1.6.0'
         googlePlayServicesAuthVersion = "19.2.0"
         googlePlayServicesVersion = "+"
         supportLibVersion = "28.0.0"
@@ -71,6 +71,7 @@ allprojects {
         jcenter() {
             content {
                 includeModule("com.yqritc", "android-scalablevideoview")
+                includeModule("com.danikula", "videocache")
             }
         }
         maven { url 'https://www.jitpack.io' }

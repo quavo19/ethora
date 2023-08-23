@@ -12,7 +12,7 @@ import { Box, HStack, Text, View, VStack } from "native-base";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import { observer } from "mobx-react-lite";
-import { Image, StyleSheet, TouchableOpacity } from "react-native";
+import { Image, Pressable, StyleSheet, TouchableOpacity } from "react-native";
 import { commonColors, textStyles } from "../../../docs/config";
 import { useStores } from "../../stores/context";
 import { MultiStoryScreen } from '../storyView/modules';
@@ -20,11 +20,13 @@ import { format } from "date-fns";
 import dayjs from "dayjs";
 import { HomeStackNavigationProp } from "../../navigation/types";
 import { People } from './Participants';
+import Feather from 'react-native-vector-icons/Feather';
 
 
 interface RoomListProps {
   jid: string;
   name: string;
+  onBottomSheetOpen: () => void;
   counter: number;
   participants: string | number;
   index: number;
@@ -57,12 +59,12 @@ const getTime = (time: Date | undefined) => {
   }
 };
 export const RoomListItem = observer(
-  ({ jid, name, participants }: RoomListProps) => {
+  ({ jid, name, participants, onBottomSheetOpen }: RoomListProps) => {
     
     const [randomColor, setRandomColor] = useState(getRandomColor());
     function getRandomColor() {
-      var minShade = 5; // Minimum shade value (0-255) for black
-      var maxShade = 10; // Maximum shade value (0-255) for black
+      var minShade = 0; // Minimum shade value (0-255) for black
+      var maxShade = 0; // Maximum shade value (0-255) for black
       var shade = Math.floor(Math.random() * (maxShade - minShade + 1)) + minShade; // Random shade value
     
       var color = 'rgb(' + shade + ',' + shade + ',' + shade + ')';
@@ -75,7 +77,6 @@ export const RoomListItem = observer(
     const defaultText = "Tap to view and join the conversation.";
 
     const navigateToChat = () => {
-      console.log("navigate")
       chatStore.updateBadgeCounter(jid, "CLEAR");
       //@ts-ignore
       navigation.navigate("ChatScreen", { chatJid: jid, chatName: name });
@@ -83,49 +84,21 @@ export const RoomListItem = observer(
     return (
       <View>
         <Box
-        style={[{marginVertical: 3, marginHorizontal: 1.5, height: 260}]}
-        borderWidth="1"
+        style={{ height: 400}}
         borderRadius={30}
-        margin={2}
         backgroundColor={randomColor}
-        padding="10"
+        padding="1.5"
         _dark={{
           borderColor: "gray.600",
         }}
-        pl="4"
-        pr="5"
-        py="2"
+       
         >
           <View style={{
             display: "flex",
 
           }}>
-               <Box 
-               flex={1}
-               justifyContent={"center"}
-               alignItems={"center"}
-               >
-                  <Text
-                  style={{
-                    position: "absolute",
-                    top: -15,
-                    backgroundColor: randomColor,
-                    padding: 2,
-                    borderRadius: 10,
-                  }}
-                    
-                    fontSize="xs"
-                    _dark={{
-                      color: "warmGray.50",
-                    }}
-                    fontFamily={textStyles.mediumFont}
-                    color="white"
-                  >
-                   last Active {getTime(room?.lastMessageTime)}
-                  </Text>
-                </Box>
           </View>
-          <View style={styles.NameIcon}>
+          <TouchableOpacity onPress={navigateToChat} style={styles.NameIcon}>
                 <RoomListItemIcon
                   name={name}
                   jid={jid}
@@ -133,14 +106,13 @@ export const RoomListItem = observer(
                 />
                   <Text
                   shadow={'2'}
-                  width={hp('35%')}
+                  width={hp('40%')}
                   height={hp('3%')}
                   textAlign={'left'}
                   paddingLeft={2}
+                  fontWeight={600}
                   numberOfLines={1}
-                  fontSize={20}
-                  //paddingBottom={1}
-                  fontFamily={textStyles.semiBoldFont}
+                  fontSize={18}
                   accessibilityLabel="Name"
                   _dark={{
                     color: "warmGray.50",
@@ -152,10 +124,10 @@ export const RoomListItem = observer(
                 >                   
                 {name}
               </Text>
-            </View>
+            </TouchableOpacity>
             <View style={{
               paddingTop: 20,
-              height: hp("18.54%")
+              height: hp("30.54%")
             }}>
             {room?.lastUserText ? (
                   
@@ -174,9 +146,40 @@ export const RoomListItem = observer(
                 )}
             </View>
             <View style={{
-              paddingLeft: 10
-            }}>
-            <People members={participants}/>
+                  paddingLeft: 30,
+                  display: "flex",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  paddingTop: 7,
+                }}>
+              <People members={participants}/>
+              <Text color={"white"} paddingLeft={5}>
+                {getTime(room?.lastMessageTime)}
+              </Text>
+              
+                  <View flex={1} justifyContent={"center"} alignItems={"flex-end"}>
+                  <TouchableOpacity onPress={navigateToChat}>
+                  <Image 
+                  style={{
+                    height: hp('7%'),
+                    width: 115,
+                  }}
+                  source={require('../../assets/messageneon.png')} />
+                  </TouchableOpacity>
+                </View>
+                <View flex={0.3}>
+                  <TouchableOpacity onPress={onBottomSheetOpen}>
+                  <Image 
+                  style={{
+                    height: hp('10%'),
+                    width: 90,
+                   position: "absolute",
+                   bottom: -37
+                  }}
+                  source={require('../../assets/mic.png')} />
+                    </TouchableOpacity>
+                </View>
+
             </View>
         </Box>
       </View>
@@ -187,6 +190,7 @@ export const RoomListItem = observer(
 const styles = StyleSheet.create({
   NameIcon: {
     height: 30,
+    paddingLeft: -20,
     width: "100%",
     flexDirection: 'row',
     justifyContent: 'center',

@@ -76,9 +76,9 @@ const navbarLogoShow = false; //done
 
 // COLOUR THEME
 const commonColors = {
-  primaryColor: "#003E9C",
-  primaryDarkColor: "#2775EA",
-  secondaryColor: "#133452",
+  primaryColor: "#000",
+  primaryDarkColor: "#000",
+  secondaryColor: "#000",
 }; //done
 
 // FONTS

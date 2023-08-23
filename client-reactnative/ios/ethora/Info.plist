@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+<key>NSCameraUsageDescription</key>
+<string>We need access to your camera to record video.</string>
+<key>NSPhotoLibraryAddUsageDescription</key>
+<string>We need access to your photo library to save the recorded video.</string>
+<key>NSMicrophoneUsageDescription</key>
+<string>We need access to your microphone to record audio with the video.</string>
+
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>

@@ -137,7 +137,7 @@ interface ISystemMessage {
 //styles
 const styles = StyleSheet.create({
   sendButton: {
-    backgroundColor: commonColors.primaryDarkColor,
+    backgroundColor: "black",
     borderRadius: 100,
     padding: 5,
     marginRight: 5,
@@ -1282,7 +1282,7 @@ const ChatContainer = observer((props: ChatContainerProps) => {
           <AudioPlayer audioUrl={mediaModal.url} />
         )}
         {containerType === "thread" && (
-          <View bg={commonColors.primaryDarkColor}>
+          <View bg={"green"}>
             <RenderMainMessageSection />
           </View>
         )}

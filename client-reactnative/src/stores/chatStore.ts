@@ -93,9 +93,9 @@ export interface roomListProps {
   avatar: string;
   jid: string;
   counter: number;
+  onBottomSheetOpen: boolean;
   lastUserText: string;
   lastUserName: string;
-  lastUserAvatar: string;
   createdAt: string;
   priority?: number;
   muted?: boolean;
@@ -163,6 +163,12 @@ export interface IMessage {
   isReplace?: boolean;
   replaceMessageId?: string;
   isEdited?: boolean;
+}
+
+export interface RoomBottomSheetProps {
+  jid: string;
+  isVisible: boolean;
+  onClose: () => void;
 }
 
 export interface User {

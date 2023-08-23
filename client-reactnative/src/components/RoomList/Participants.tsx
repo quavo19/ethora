@@ -18,7 +18,7 @@ const ImageCmp = ({ overlay = false }) => {
 
 export const People = ({ members }) => {
   const count = Math.min(members, 3);
-  console.log(members)
+  
   return (
     <View style={styles.container}>
             {Array(count).fill(null).map((_, index) => (
@@ -53,9 +53,6 @@ image: {
     height: 30,
     marginLeft: -6,
     borderRadius: 24,
-    borderColor: "#fff",
-    borderWidth: 2
-
 },
 overlayContainer: {
     position: 'absolute',

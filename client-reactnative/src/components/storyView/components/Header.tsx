@@ -1,9 +1,11 @@
 import React from 'react';
 import { ProfileHeader } from 'react-native-story-view';
 import { HeaderProps } from './types';
+import { Text, View } from 'react-native';
 
 const Header = ({ userStories, multiStoryRef, ...props }: HeaderProps) => (
-  <ProfileHeader
+  <View style={{backgroundColor: "green"}}>
+    <ProfileHeader
     userImage={{ uri: userStories?.profile ?? '' }}
     userName={userStories?.username}
     userMessage={userStories?.title}
@@ -12,6 +14,7 @@ const Header = ({ userStories, multiStoryRef, ...props }: HeaderProps) => (
     }}
     {...props}
   />
+  </View>
 );
 
 export default Header;

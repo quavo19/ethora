@@ -73,7 +73,7 @@ const UserBlock = ({name, balance, total}:IUserBlock) => {
       </VStack>
       <VStack ml={'2'} style={{width: wp('30%')}}>
         <Box>
-          <Text fontSize={hp('1.7%')} fontWeight={'bold'}>
+          <Text fontSize={hp('1.7%')} fontWeight={'bold'}  color={'white'}>
             {name}
           </Text>
         </Box>
@@ -128,11 +128,11 @@ export const NftTransactionItem: React.FC<TransactionListProps> = ({
           justifyContent={'space-around'}
           alignItems={'center'}>
           <HStack style={{width: wp('30%')}} alignItems={'center'}>
-            <Text fontFamily={textStyles.boldFont} fontSize={hp('1.46%')}>
+            <Text fontFamily={textStyles.boldFont} fontSize={hp('1.46%')} >
               {value}
             </Text>
             {!!trait && <NfmtTag tag={trait} />}
-            <Text fontSize={hp('1.46%')}>
+            <Text fontSize={hp('1.46%')} >
               (of {currentTotal || nftTotal || ''} total)
             </Text>
           </HStack>
@@ -191,7 +191,7 @@ export const NftTransactionItem: React.FC<TransactionListProps> = ({
   return (
     <TouchableOpacity onPress={() => setExpanded(prev => !prev)}>
       {showDate && <TransactionsListitemDate date={formattedDate} />}
-      <Box borderColor="coolGray.200" borderWidth="1" p={'3'}>
+      <Box borderColor="rgba(50,50,50, 0.9)" borderWidth="1" p={'4'} marginBottom={3} borderRadius={14}>
         <HStack
           justifyContent={'space-between'}
           alignItems={'center'}
@@ -219,26 +219,26 @@ export const NftTransactionItem: React.FC<TransactionListProps> = ({
           {/* <Text style={styles.detailsItemTextBold}>Details:</Text> */}
           <View style={styles.detailsItem}>
             <Text style={styles.detailsItemTextBold}>TX hash: </Text>
-            <Text style={{textAlign: 'left', color: 'black'}}>
+            <Text style={{textAlign: 'left', color: 'white'}}>
               {transactionHash}
             </Text>
           </View>
           <View style={styles.detailsItem}>
             <Text style={styles.detailsItemTextBold}>From:</Text>
             <View>
-              <Text style={{textAlign: 'left'}}>{from}</Text>
+              <Text style={{textAlign: 'left', color: 'white'}}>{from}</Text>
             </View>
           </View>
           <View style={styles.detailsItem}>
             <Text style={styles.detailsItemTextBold}>To:</Text>
             <View>
-              <Text style={{textAlign: 'left'}}>{to}</Text>
+              <Text style={{textAlign: 'left', color: 'white'}}>{to}</Text>
             </View>
           </View>
           <View style={styles.detailsItem}>
             <Text style={styles.detailsItemTextBold}>Timestamp:</Text>
             <View>
-              <Text style={{textAlign: 'left'}}>
+              <Text style={{textAlign: 'left', color: 'white'}}>
                 {new Date(timestamp).getTime()}
               </Text>
             </View>
@@ -246,13 +246,13 @@ export const NftTransactionItem: React.FC<TransactionListProps> = ({
           <View style={styles.detailsItem}>
             <Text style={styles.detailsItemTextBold}>Value:</Text>
             <View>
-              <Text style={{textAlign: 'left'}}>{value}</Text>
+              <Text style={{textAlign: 'left', color: 'white'}}>{value}</Text>
             </View>
           </View>
           <View style={styles.detailsItem}>
             <Text style={styles.detailsItemTextBold}>Block:</Text>
             <View>
-              <Text style={{textAlign: 'left'}}>
+              <Text style={{textAlign: 'left', color: 'white'}}>
                 {String(blockNumber).replace(/(.)(?=(\d{3})+$)/g, '$1,')}
               </Text>
             </View>
@@ -328,5 +328,6 @@ const styles = StyleSheet.create({
   detailsItemTextBold: {
     width: wp('23%'),
     fontWeight: '700',
+    color: 'white',
   },
 });

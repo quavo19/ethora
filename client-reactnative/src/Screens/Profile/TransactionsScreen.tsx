@@ -18,7 +18,7 @@ const TransactionsScreen = observer(() => {
   }, []);
 
   return (
-    <View flex={1} pb={hp('15%')}>
+    <View flex={1} pb={hp('15%')} paddingTop={20} backgroundColor={"black"}>
       <SecondaryHeader title="Transactions" />
       <TransactionsList
         transactions={walletStore.transactions}
