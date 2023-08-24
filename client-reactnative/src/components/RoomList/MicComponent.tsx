@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, ProgressBarAndroid, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, ProgressBarAndroid, TouchableOpacity, Dimensions, Modal, Image } from 'react-native';
 import AudioRecorderPlayer, {
   AVEncoderAudioQualityIOSType,
   AVEncodingOption,
@@ -11,16 +11,85 @@ import NeonButton from './NeonButton';
 import NeonBigButton from './NeonBigBUttons';
 import { Avatars } from './AvatarData';
 import AvatarList from './AvatarFlatListItem';
-import SmallNeonButton from './SmallNeonButtons';
+import ChooseVideo from './ChooseVideoFile';
 import Icon  from 'react-native-vector-icons/Feather';
+import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import Video from 'react-native-video';
 
-const MicComponent = () => {
+
+const screenHeight = Dimensions.get('window').height;
+const halfScreenHeight = screenHeight / 2;
+
+type VideoPath = {
+  uri?: string;
+  type?: string;
+  fileName?: string;
+};
+const MicComponent: React.FC = () => {
   const [recordTime, setRecordTime] = useState('00:00:00');
   const [playTime, setPlayTime] = useState('00:00:00');
   const [isRecording, setIsRecording] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [videoPath, setVideoPath] = useState<VideoPath>({});
+  const [isVideoModalVisible, setVideoModalVisible] = useState<boolean>(false);
+
+  const chooseVideo = () => {
+    let options = {
+      mediaType: 'mixed',
+    };
+    launchImageLibrary(options, (response) => {
+      if (!response.didCancel && !response.errorCode && response.assets && response.assets[0].uri) {
+        setVideoPath({
+          uri: response.assets[0].uri,
+          type: response.assets[0].type,
+          fileName: response.assets[0].fileName,
+        });
+        setVideoModalVisible(true);
+      }
+    });
+  };
+
+  const captureVideo = () => {
+    let options = {
+      mediaType: 'video',
+      durationLimit: 30,
+      videoQuality: 'low',
+    };
+    launchCamera(options, (response) => {
+      if (!response.didCancel && !response.errorCode && response.assets && response.assets[0].uri) {
+        setVideoPath({
+          uri: response.assets[0].uri,
+          type: response.assets[0].type,
+          fileName: response.assets[0].fileName,
+        });
+        setVideoModalVisible(true); 
+      }      
+    });
+  };
+
+  const uploadVideoToAPI = async () => {
+    if (!videoPath.uri) return;
+
+    const formData = new FormData();
+    formData.append('video', {
+      uri: videoPath.uri,
+      type: videoPath.type || 'video/mp4',
+      name: videoPath.fileName || 'uploadedvideo.mp4',
+    });
+
+    try {
+      const response = await fetch('YOUR_API_ENDPOINT_HERE', {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error uploading video:', error);
+    }
+  };
 
   const audioRecorderPlayer = useRef(new AudioRecorderPlayer()).current;
   audioRecorderPlayer.setSubscriptionDuration(0.09);
@@ -112,6 +181,46 @@ const MicComponent = () => {
       }}>
         <AvatarList data={Avatars} />
       </View>
+      <Modal
+          animationType="slide"
+          transparent={true}
+          visible={isVideoModalVisible}
+          onRequestClose={() => {
+            setVideoModalVisible(false);
+          }}>
+            
+          <View style={styles.modalView}>
+          <TouchableOpacity
+              style={styles.closeButton}
+              onPress={() => setVideoModalVisible(false)}>
+              <Text style={{fontWeight: "900", color: "white", fontSize: 30}}>x</Text>
+            </TouchableOpacity>
+            
+            {videoPath.type 
+              ? (videoPath.type[0] === 'v'
+                  ? <Video
+                      source={{ uri: videoPath.uri }}
+                      style={styles.videoStyle}
+                      controls={true}
+                      resizeMode='cover'
+                    />
+                  : (videoPath.type[0] === 'i'
+                      ? <Image
+                          source={{ uri: videoPath.uri }}
+                          style={styles.videoStyle}
+                        />
+                      : null))
+              : null}
+
+            <TouchableOpacity 
+            onPress={uploadVideoToAPI}
+            style={styles.uploadToApi}
+            >
+              <Text>Post Story</Text>
+            </TouchableOpacity>
+            
+          </View>
+        </Modal>
 
       { (isRecording && playTime < recordTime) ? 
         <View>
@@ -146,10 +255,11 @@ const MicComponent = () => {
           style={{ width: 360, height: 80 }}
         />
       </View>
+      
       <View style={styles.pauseMedia}>
         <NeonBigButton 
           title={require('./../../assets/camera.png')}
-          onPress={onStartRecord}
+          onPress={captureVideo}
         />
         <View style={{
           display: "flex",
@@ -181,7 +291,7 @@ const MicComponent = () => {
         </View>
         <NeonBigButton 
           title={require('./../../assets/gallery.png')}
-          onPress={onStartRecord}
+          onPress={chooseVideo}
         />
       </View>
     </View>
@@ -221,6 +331,30 @@ const styles = StyleSheet.create({
     height: 10,
     borderRadius: 5,
   },
+  videoStyle: {
+    width: '90%',
+    height: halfScreenHeight,
+  },
+  modalView: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.7)',
+    width: '100%',
+  },
+  closeButton: {
+    alignItems: "flex-end",
+    justifyContent: "flex-start",
+    padding: 10,
+    marginTop: 15,
+  },
+  uploadToApi: {
+    alignItems: 'center',
+    padding: 10,
+    marginTop: 15,
+    borderRadius: 10,
+    backgroundColor: '#fff'
+  }
 });
 
 export default MicComponent;
