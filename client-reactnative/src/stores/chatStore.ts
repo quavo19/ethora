@@ -93,7 +93,6 @@ export interface roomListProps {
   avatar: string;
   jid: string;
   counter: number;
-  onBottomSheetOpen: boolean;
   lastUserText: string;
   lastUserName: string;
   createdAt: string;

@@ -111,8 +111,8 @@ export const MainHeader = observer(() => {
     <View style={{
       position: "absolute",
       width: "100%",
-      top: 850,
-      // backgroundColor: 
+      
+      bottom: 0
     }}>
         <Box
       style={{

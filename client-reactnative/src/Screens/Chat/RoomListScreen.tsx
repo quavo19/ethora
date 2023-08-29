@@ -1,5 +1,6 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {observer} from 'mobx-react-lite';
+import { MainHeader } from '../../components/MainHeader/MainHeader';
 import {View} from 'native-base';
 import React from 'react';
 
@@ -14,6 +15,7 @@ const RoomListScreen = observer(({}: ScreenProps) => {
   return (
     <View flex={1} backgroundColor={'white'}>
       <RoomsTabBar />
+      <MainHeader />
     </View>
   );
 });

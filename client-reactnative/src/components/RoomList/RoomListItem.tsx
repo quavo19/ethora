@@ -10,7 +10,6 @@ import { useNavigation } from "@react-navigation/native";
 import { RoomListItemIcon } from "./RoomListItemIcon";
 import { Box, HStack, Text, View, VStack } from "native-base";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
-import MaterialIcon from "react-native-vector-icons/MaterialIcons";
 import { observer } from "mobx-react-lite";
 import { Image, Pressable, StyleSheet, TouchableOpacity } from "react-native";
 import { commonColors, textStyles } from "../../../docs/config";
@@ -20,7 +19,6 @@ import { format } from "date-fns";
 import dayjs from "dayjs";
 import { HomeStackNavigationProp } from "../../navigation/types";
 import { People } from './Participants';
-import Feather from 'react-native-vector-icons/Feather';
 
 
 interface RoomListProps {
@@ -84,55 +82,20 @@ export const RoomListItem = observer(
     return (
       <View>
         <Box
-        style={{ height: 400}}
-        borderRadius={30}
-        backgroundColor={randomColor}
-        padding="1.5"
+        style={{ height: hp("41.50%")}}
         _dark={{
           borderColor: "gray.600",
         }}
-       
         >
           <View style={{
             display: "flex",
-
           }}>
           </View>
-          <TouchableOpacity onPress={navigateToChat} style={styles.NameIcon}>
-                <RoomListItemIcon
-                  name={name}
-                  jid={jid}
-                  counter={chatStore.roomsInfoMap[jid]?.counter}
-                />
-                  <Text
-                  shadow={'2'}
-                  width={hp('40%')}
-                  height={hp('3%')}
-                  textAlign={'left'}
-                  paddingLeft={2}
-                  fontWeight={600}
-                  numberOfLines={1}
-                  fontSize={18}
-                  accessibilityLabel="Name"
-                  _dark={{
-                    color: "warmGray.50",
-                  }}
-                  color="white"
-                  justifyContent={"center"}
-                  alignItems={"center"}
-                  backgroundColor={randomColor}
-                >                   
-                {name}
-              </Text>
-            </TouchableOpacity>
             <View style={{
-              paddingTop: 20,
-              height: hp("30.54%")
+              height: hp("45.54%"),
             }}>
             {room?.lastUserText ? (
-                  
-                    <MultiStoryScreen />
-                  
+                  <MultiStoryScreen />
                 ) : (
                   <Text
                     color="coolGray.600"
@@ -146,23 +109,53 @@ export const RoomListItem = observer(
                 )}
             </View>
             <View style={{
-                  paddingLeft: 30,
+                  position: "absolute",
+                  width: hp('43%'),
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
-                  paddingTop: 7,
+                  bottom: 13
                 }}>
+                  <TouchableOpacity onPress={navigateToChat} style={styles.NameIcon}>
+                <RoomListItemIcon
+                  name={name}
+                  jid={jid}
+                  counter={chatStore.roomsInfoMap[jid]?.counter}
+                />
+                  <Text
+                  shadow={'2'}
+                  width={hp('10%')}
+                  height={hp('2.5%')}
+                  textAlign={'left'}
+                  paddingLeft={2}
+                  fontWeight={600}
+                  numberOfLines={1}
+                  fontSize={15}
+                  accessibilityLabel="Name"
+                  _dark={{
+                    color: "warmGray.50",
+                  }}
+                  color="white"
+                  justifyContent={"center"}
+                  alignItems={"center"}
+                  backgroundColor={randomColor}
+                >                   
+                {name}
+              </Text>
+            </TouchableOpacity>
               <People members={participants}/>
-              <Text color={"white"} paddingLeft={5}>
+              <Text color={"white"} paddingLeft={5} fontSize={10}>
                 {getTime(room?.lastMessageTime)}
               </Text>
-              
                   <View flex={1} justifyContent={"center"} alignItems={"flex-end"}>
                   <TouchableOpacity onPress={navigateToChat}>
                   <Image 
                   style={{
-                    height: hp('7%'),
+                    height: hp('8%'),
+                    position: "absolute",
+                    bottom: -37,
                     width: 115,
+                    right: hp('1.5%'),
                   }}
                   source={require('../../assets/messageneon.png')} />
                   </TouchableOpacity>
@@ -174,12 +167,12 @@ export const RoomListItem = observer(
                     height: hp('10%'),
                     width: 90,
                    position: "absolute",
-                   bottom: -37
+                   bottom: -37,
+                   right: hp('-2%'),
                   }}
                   source={require('../../assets/mic.png')} />
                     </TouchableOpacity>
                 </View>
-
             </View>
         </Box>
       </View>
@@ -191,13 +184,11 @@ const styles = StyleSheet.create({
   NameIcon: {
     height: 30,
     paddingLeft: -20,
-    width: "100%",
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     textAlign: 'center',
-    paddingTop: 20,
-
+    
   },
   lastAvatar: {
     width: 120,

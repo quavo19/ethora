@@ -49,9 +49,9 @@ imageContainer: {
     marginLeft: -10,
 },
 image: {
-    width: 30,
-    height: 30,
-    marginLeft: -6,
+    width: 20,
+    height: 20,
+    marginLeft: -1,
     borderRadius: 24,
 },
 overlayContainer: {
