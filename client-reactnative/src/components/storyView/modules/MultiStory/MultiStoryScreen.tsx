@@ -7,6 +7,7 @@ import {
   TransitionMode
 } from 'react-native-story-view';
 import { stories, Strings } from '../../constants';
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { Header, Footer } from '../../components';
 import { Colors } from '../../theme';
 import styles from './styles';
@@ -32,40 +33,39 @@ const MultiStoryScreen = () => {
 
   return (
       <View>
-      
-    <MultiStory
-          stories={userStories}
-          transitionMode={TransitionMode.Cube}
-          ItemSeparatorComponent={() => <View style={styles.separator} />}
-          ref={multiStoryRef}       
-          onComplete={onStoryClose}
-          avatarProps={{
-            viewedStoryContainerStyle: {
-              
-              borderWidth: 0
-            },
-            userNameStyle: { fontSize: 16, },
-            userImageStyle: { borderRadius: 20, height: 245, width: 181},
-            containerStyle: {borderRadius: 17, height: 240, width: 180, borderWidth: 0, borderColor: "gray", marginHorizontal: -8}
-          }}
-          storyContainerProps={{
-            renderHeaderComponent: ({ userStories }) => (
-              
+          <MultiStory
+            stories={userStories}
+            transitionMode={TransitionMode.Cube}
+            ItemSeparatorComponent={() => <View style={styles.separator} />}
+            ref={multiStoryRef}       
+            onComplete={onStoryClose}
+            avatarProps={{
+              viewedStoryContainerStyle: {
+                
+                borderWidth: 0
+              },
+              userNameStyle: { fontSize: 16, position: "absolute", padding: 5, bottom: 50 },
+              userImageStyle: { borderRadius: 10, height: hp("40.54%"), width: hp("22.64%")},
+              containerStyle: {borderRadius: 10, height: hp("40.54%"), width: hp("22.64%"), borderWidth: 0, borderColor: "gray", backgroundColor: "gray", marginHorizontal: -5}
+            }}
+            storyContainerProps={{
+              renderHeaderComponent: ({ userStories }) => (
+                
 
-                <Header {...{ userStories, multiStoryRef }} />
-          
-            ),
-            renderFooterComponent: ({ userStories, story, progressIndex }) => (
-              <Footer {...{ userStories, story, progressIndex }}/>
-            ),
-            renderIndicatorComponent: () => <Indicator />,
-            
-            barStyle: {
-              barActiveColor: "yellow",
-              barHeight: 6
-            }
-          }}
-     />
+                  <Header {...{ userStories, multiStoryRef }} />
+
+              ),
+              renderFooterComponent: ({ userStories, story, progressIndex }) => (
+                <Footer {...{ userStories, story, progressIndex }}/>
+              ),
+              renderIndicatorComponent: () => <Indicator />,
+              
+              barStyle: {
+                barActiveColor: "yellow",
+                barHeight: 6
+              }
+            }}
+          />
       </View>
   );
 };

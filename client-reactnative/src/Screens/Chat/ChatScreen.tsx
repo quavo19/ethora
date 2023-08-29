@@ -7,8 +7,6 @@ import { useStores } from "../../stores/context";
 import { MultiStoryScreen } from "../../components/storyView/modules";
 import { getRoomArchiveStanza, getPaginatedArchive } from "../../xmpp/stanzas";
 import ChatContainer from "../../components/Chat/ChatContainer";
-import ChatBottomSheet from "./ChatRoom";
-import RoomListItemStory from '../../components/RoomList/RoomListItemStories';
 import { IMessage, roomListProps } from "../../stores/chatStore";
 import { View } from "native-base";
 
@@ -85,21 +83,7 @@ const ChatScreen2 = observer(({ route }: any) => {
       chatStore.setChatMessagesLoading(true);
     }
   };
-  const sheetRef = useRef<BottomSheet>(null);
 
-  // variables
-  const snapPoints = useMemo(() => ["1%", "50%", "100%"], []);
-
-  // callbacks
-  const handleSheetChange = useCallback((index) => {
-    console.log("handleSheetChange", index);
-  }, []);
-  const handleSnapPress = useCallback((index) => {
-    sheetRef.current?.snapToIndex(index);
-  }, []);
-  const handleClosePress = useCallback(() => {
-    sheetRef.current?.close();
-  }, []);
   return (
     <View testID="ChatScreen">
       
@@ -107,7 +91,7 @@ const ChatScreen2 = observer(({ route }: any) => {
       <View style ={{
         position: "absolute",
         top: 70,
-        bottom: 0,
+        bottom: 0,      
       }}>
         
         <MultiStoryScreen/>

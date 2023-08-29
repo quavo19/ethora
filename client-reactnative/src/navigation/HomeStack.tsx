@@ -203,14 +203,14 @@ export const HomeStackScreen = observer(() => {
         name={"RoomsListScreem"}
         component={RoomListScreen}
         options={() => ({
-          header: ({}) => <MainHeader />,
+          headerShown: false,
         })}
       />
       <HomeStack.Screen
         name={"ChatScreen"}
         component={ChatScreen}
         options={() => ({
-          header: ({}) => <MainHeader />,
+          headerShown: false,
         })}
       />
       <HomeStack.Screen
