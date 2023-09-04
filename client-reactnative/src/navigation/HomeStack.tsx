@@ -217,22 +217,21 @@ export const HomeStackScreen = observer(() => {
         name={"ProfileScreen"}
         component={ProfileScreen}
         options={() => ({
-          header: ({}) => <MainHeader />,
+          headerShown: false,
         })}
       />
       <HomeStack.Screen
         name={"TransactionsScreen"}
         component={TransactionsScreen}
         options={() => ({
-          header: ({}) => <MainHeader />,
+          headerShown: false,
         })}
       />
       <HomeStack.Screen
         name={"OtherUserProfileScreen"}
-        //@ts-ignore
         component={OtherUserProfileScreen}
         options={() => ({
-          header: ({}) => <MainHeader />,
+          headerShown: false,
         })}
       />
       <HomeStack.Screen
