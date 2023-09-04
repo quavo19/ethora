@@ -15,12 +15,14 @@ export const CreateNewChatButton: React.FC<ICreateNewChatButton> = ({
   return (
     <View style={{
       position: "absolute",
-      top: 780,
-      left: 350,
+      bottom: 80,
       zIndex: 10,
+      right: 0,
+      width: 90,
+      
     }}>
       <TouchableOpacity onPress={onPress} style={{padding: 10, paddingLeft: 15, minHeight:hp("9%"), width:wp("100%")}}>
-      <HStack alignItems={'center'}>
+      <HStack>
         <Box
           w={hp('5.5%')}
           h={hp('5.5%')}
@@ -30,14 +32,11 @@ export const CreateNewChatButton: React.FC<ICreateNewChatButton> = ({
           alignItems="center"
           marginRight={2}>
           <Image 
-                  style={{
-                    
-                    height: 90,
-                    width: 130,
-                    marginRight: 30
-                  }}
-                  source={require('../../assets/create.png')} />
-                 
+              style={{
+              height: 100,
+              width: "100%",
+            }}
+            source={require('../../assets/create.png')} />                
         </Box>
       </HStack>
     </TouchableOpacity>
