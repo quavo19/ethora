@@ -41,6 +41,7 @@ import parseLink from "../../helpers/parseLink";
 import { generateProfileLink } from "../../helpers/generateProfileLink";
 import { useStores } from "../../stores/context";
 import { updateVCard } from "../../xmpp/stanzas";
+import { MainHeader } from "../../components/MainHeader/MainHeader";
 import { uploadFiles } from "../../helpers/uploadFiles";
 
 const { primaryColor, primaryDarkColor } = commonColors;
@@ -482,6 +483,7 @@ export const ProfileScreen = observer(() => {
             apiStore.xmppDomains.DOMAIN,
         })}
       />
+      <MainHeader />
     </SafeAreaView>
   );
 });
