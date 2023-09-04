@@ -110,7 +110,7 @@ export const RoomListItem = observer(
             </View>
             <View style={{
                   position: "absolute",
-                  width: hp('43%'),
+                  width: "100%",
                   display: "flex",
                   flexDirection: "row",
                   alignItems: "center",
