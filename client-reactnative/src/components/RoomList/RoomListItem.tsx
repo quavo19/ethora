@@ -94,7 +94,7 @@ export const RoomListItem = observer(
             <View style={{
               height: hp("45.54%"),
             }}>
-            {room?.lastUserText ? (
+            {room?.lastUserText || 1 == 1  ? (
                   <MultiStoryScreen />
                 ) : (
                   <Text
@@ -147,11 +147,11 @@ export const RoomListItem = observer(
               <Text color={"white"} paddingLeft={5} fontSize={10}>
                 {getTime(room?.lastMessageTime)}
               </Text>
-                  <View flex={1} justifyContent={"center"} alignItems={"flex-end"}>
+                  <View flex={1} justifyContent={"center"} alignItems={"flex-end"} >
                   <TouchableOpacity onPress={navigateToChat}>
                   <Image 
                   style={{
-                    height: hp('8%'),
+                    height: 70,
                     position: "absolute",
                     bottom: -37,
                     width: 115,
@@ -164,7 +164,7 @@ export const RoomListItem = observer(
                   <TouchableOpacity onPress={onBottomSheetOpen}>
                   <Image 
                   style={{
-                    height: hp('10%'),
+                    height: 85,
                     width: 90,
                    position: "absolute",
                    bottom: -37,
