@@ -6,6 +6,7 @@ import {
   MultiStory,
   TransitionMode
 } from 'react-native-story-view';
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import { stories, Strings } from '../../constants';
 import { Header, Footer } from '../../components';
 import { Colors } from '../../theme';
@@ -43,9 +44,8 @@ const ChatMultiStoryScreen = () => {
               borderRadius: 0
             },
             userNameStyle: { fontSize: 16 },
-            userImageStyle: { borderRadius: 20},
-            containerStyle: { borderWidth: 0, borderRadius: 20, height: 135, width: 110,},
-            
+            userImageStyle: { borderRadius: 10},
+            containerStyle: {borderRadius: 10, height: "100%", width:  150, borderWidth: 0, marginHorizontal: -10}            
           }}
           storyContainerProps={{
             renderHeaderComponent: ({ userStories }) => (

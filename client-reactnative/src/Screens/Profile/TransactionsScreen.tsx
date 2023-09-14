@@ -5,6 +5,7 @@ import {heightPercentageToDP as hp} from 'react-native-responsive-screen';
 import TransactionsList from '../../components/Nft/NftTransactionList';
 import SecondaryHeader from '../../components/SecondaryHeader/SecondaryHeader';
 import {useStores} from '../../stores/context';
+import { MainHeader } from '../../components/MainHeader/MainHeader';
 
 const TransactionsScreen = observer(() => {
   const {walletStore, loginStore} = useStores();
@@ -34,6 +35,7 @@ const TransactionsScreen = observer(() => {
         }}
         walletAddress={loginStore.initialData.walletAddress}
       />
+      <MainHeader />
     </View>
   );
 });

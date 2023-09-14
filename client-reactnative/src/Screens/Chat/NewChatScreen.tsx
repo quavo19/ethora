@@ -33,6 +33,7 @@ import { uploadFiles } from "../../helpers/uploadFiles";
 import { fileUpload } from "../../config/routesConstants";
 import { Alert, Text } from "react-native";
 import { HomeStackNavigationProp } from "../../navigation/types";
+import { MainHeader } from "../../components/MainHeader/MainHeader";
 
 interface NewChatScreenProps {}
 
@@ -269,9 +270,9 @@ const NewChatScreen = (props: NewChatScreenProps) => {
           }}>
           Create new chat
           </Text>
-          
         </Button>
       </View>
+      <MainHeader />
     </View>
   );
 };

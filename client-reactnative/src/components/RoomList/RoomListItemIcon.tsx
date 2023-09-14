@@ -24,15 +24,13 @@ export const RoomListItemIcon = observer(
       <Box
         shadow={'2'}
         backgroundColor={"gray.500"}
-        height={hp('3%')}
-        width={hp('3%')}
         flexDirection={'row'}
         justifyContent={'center'}
         alignItems={'center'}
         textAlign={'center'}
         position={'relative'}
         accessibilityLabel={'Thumbnail'}
-        borderRadius={hp('50%')}>
+        borderRadius={50}>
         {room?.roomThumbnail ? (
           <FastImage
             source={{
@@ -41,9 +39,9 @@ export const RoomListItemIcon = observer(
             }}
             resizeMode={FastImage.resizeMode.cover}
             style={{
-              width: hp('3%'),
-              height: hp('3%'),
-              borderRadius: hp('50.7%'),
+              width: 23,
+              height: 23,
+              borderRadius: 50,
             }}
           />
         ) : (
@@ -83,18 +81,6 @@ export const RoomListItemIcon = observer(
 );
 
 const styles = StyleSheet.create({
-  chatHomeItemIcon: {
-    borderColor: commonColors.primaryDarkColor,
-    backgroundColor: commonColors.primaryDarkColor,
-    height: hp('5.54%'),
-    width: hp('5.54%'),
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    textAlign: 'center',
-    position: 'relative',
-    borderRadius: hp('0.7%'),
-  },
   imageBg: {
     height: hp('5.5%'),
     width: hp('5.5%'),
@@ -104,11 +90,12 @@ const styles = StyleSheet.create({
   },
   fullName: {
     color: 'white',
-    fontSize: 20,
-    marginRight: 3,
+    fontSize: 13,
+    margin: 2,
     fontFamily: textStyles.boldFont,
     textTransform: 'uppercase',
     textAlign: 'center',
+    
   },
   counterContainer: {
     alignItems: 'flex-end',

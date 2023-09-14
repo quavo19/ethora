@@ -170,9 +170,6 @@ export const HeaderMenu = () => {
         }}>
           <ScrollView style={{ backgroundColor: "rgba(0, 0, 0, 0.9)", }}>
         <SafeAreaView style={{
-        
-          
-          
           borderBottomRightRadius: 50,
           borderTopRightRadius: 50
         }}>

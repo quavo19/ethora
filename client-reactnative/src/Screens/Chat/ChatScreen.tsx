@@ -4,7 +4,7 @@ import { StyleSheet, Text, Button, SafeAreaView } from "react-native";
 import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import { format } from "date-fns";
 import { useStores } from "../../stores/context";
-import { MultiStoryScreen } from "../../components/storyView/modules";
+import ChatMultiStoryScreen from "../../components/storyView/modules/MultiStory/ChatMultiStoryScreen";
 import { getRoomArchiveStanza, getPaginatedArchive } from "../../xmpp/stanzas";
 import ChatContainer from "../../components/Chat/ChatContainer";
 import { IMessage, roomListProps } from "../../stores/chatStore";
@@ -88,20 +88,14 @@ const ChatScreen2 = observer(({ route }: any) => {
     <View testID="ChatScreen">
       
       <SafeAreaView style={styles.safeArea}>
-      <View style ={{
-        position: "absolute",
-        top: 70,
-        bottom: 0,      
-      }}>
-        
-        <MultiStoryScreen/>
+      <View style={styles.storycontainer}>
+        <ChatMultiStoryScreen/>
       </View>
       <View style={styles.container}>
         <View
        style={{
         position: "relative",
-        height: "100%",
-        
+        height: "95%",
        }} 
       >
         
@@ -122,12 +116,16 @@ const ChatScreen2 = observer(({ route }: any) => {
 
 const styles = StyleSheet.create({
   container: {
-    position: "relative",
-    top: 280,
-    height: "83.5%"
+    position: "absolute",
+    height: "75.5%",
+    bottom: 0
   },
   safeArea: {
-    backgroundColor: "black"
+    backgroundColor: "black",
+    height: "100%",
+  },
+  storycontainer: {
+    height: "27%",
   }
 });
 export default ChatScreen2;

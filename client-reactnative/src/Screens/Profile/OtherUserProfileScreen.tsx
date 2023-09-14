@@ -41,6 +41,7 @@ import {
   HomeStackNavigationProp,
   HomeStackParamList,
 } from "../../navigation/types";
+import { MainHeader } from "../../components/MainHeader/MainHeader";
 
 const { primaryColor, primaryDarkColor } = commonColors;
 const { boldFont } = textStyles;
@@ -301,7 +302,6 @@ const OtherUserProfileScreen = observer(({ route }: ScreenProps) => {
         </View>
         <View style={{ flex: 1, marginTop: hp("5.5%") }}>
           <VStack
-            // paddingTop={hp('2.4%')}
             bgColor={"#FBFBFB"}
             borderTopLeftRadius={30}
             borderTopRightRadius={30}
@@ -426,6 +426,7 @@ const OtherUserProfileScreen = observer(({ route }: ScreenProps) => {
           </VStack>
         </View>
       </View>
+      <MainHeader />
     </SafeAreaView>
   );
 });

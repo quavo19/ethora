@@ -111,7 +111,6 @@ export const MainHeader = observer(() => {
     <View style={{
       position: "absolute",
       width: "100%",
-      
       bottom: 0
     }}>
         <Box
@@ -128,12 +127,11 @@ export const MainHeader = observer(() => {
       }}
       height={hp('9%')}
       justifyContent={'center'}
-      
-      borderBottomRadius={20}
+      alignItems={'center'}
       bgColor={'rgba(0, 0, 0, 0.5)'}>
       <HStack alignItems="center" >
         <VStack>
-          <HStack marginLeft={3} marginTop={2}>
+          <HStack marginLeft={0} marginTop={2}>
             <HeaderMenu />
           </HStack>
         </VStack>
@@ -147,12 +145,12 @@ export const MainHeader = observer(() => {
                 <Image 
                   style={{
                     height: hp('9%'),
-                    width: 100,
+                    width: 90,
                   }}
                   source={item.icon} />
               </TouchableOpacity>
               {!!chatStore.unreadMessagesForGroups[item.key] && (
-                <View style={{position: 'absolute', right: -5, bottom: -4}}>
+                <View style={{position: 'absolute', bottom: -4}}>
                   <Badge
                     colorScheme="danger"
                     rounded="full"
@@ -172,7 +170,7 @@ export const MainHeader = observer(() => {
         })}
 
         <VStack>
-          <HStack marginRight={7}>
+          <HStack marginRight={0}>
             <HeaderBalanceButton />
           </HStack>
         </VStack>
