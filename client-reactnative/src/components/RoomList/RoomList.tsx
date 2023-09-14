@@ -23,6 +23,12 @@ import { BlurView } from "@react-native-community/blur";
 import CustomBackground from './CustomBackground';
 import { BottomSheetBackgroundProps } from "@gorhom/bottom-sheet";
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { 
+  responsiveHeight, 
+  responsiveWidth, 
+  responsiveFontSize 
+} from 'react-native-responsive-dimensions';
+
 
 interface IRoomList{
   roomsList: roomListProps[];
@@ -97,81 +103,55 @@ export const RoomList:React.FC<IRoomList> = observer((props:IRoomList) => {
             );
           }}
         />
-      
-    <BottomSheet
+      <BottomSheet
       ref={sheetRef}
       snapPoints={snapPoints}
       onChange={handleSheetChange}
       backgroundComponent={CustomBackground}
     >
-      <BottomSheetView style={{ backgroundColor: 'transparent', flex: 1, borderTopLeftRadius: 50 }}>
+      <BottomSheetView style={{ backgroundColor: 'transparent', flex: 1, borderTopLeftRadius: responsiveWidth(12) }}>
       <BlurView
-        style={{ flex: 1,  }}
-        blurType="dark"  // You can choose 'dark', 'light', or 'extraDark'
-        blurAmount={8}   // Adjust blurAmount to fit your needs
+        style={{ flex: 1 }}
+        blurType="dark"
+        blurAmount={8}
       >
           <View style={{
-             display: "flex",
              flexDirection: "row",
             justifyContent: "space-between"
-             
           }}>
             <View style={{
-            display: "flex",
             flexDirection: "row",
-            padding: 10,
-           
+            padding: responsiveWidth(2),
           }}>
             <RoomListIcon
               name={selectedRoomName}
               jid={selectedRoomJid}
             />
             <Text
-              shadow={'2'}
-              height={30}
+              height={responsiveHeight(4)}
               textAlign={'left'}
-              paddingLeft={2}
-              fontWeight={600}
-              numberOfLines={1}
-              fontSize={18}
-              accessibilityLabel="Name"
-              _dark={{
-                color: "warmGray.50",
-              }}
+              paddingLeft={responsiveWidth(1)}
+              fontWeight={'bold'}  // changed 600 to 'bold' for better compatibility
+              fontSize={responsiveFontSize(2)}
               color="white"
-              justifyContent={"center"}
-              alignItems={"center"}
-              backgroundColor={"yellow"}
             >
               {selectedRoomName}
             </Text>
             </View>
             <TouchableOpacity onPress={handleClosePress}>
             <Text
-              shadow={'2'}
-              
               textAlign={'left'}
-              padding={3}
-              paddingLeft={2}
-              fontWeight={600}
-              numberOfLines={1}
-              fontSize={18}
-              accessibilityLabel="Name"
-              _dark={{
-                color: "warmGray.50",
-              }}
+              padding={responsiveWidth(1)}
+              paddingLeft={responsiveWidth(1)}
+              fontWeight={'bold'}
+              fontSize={responsiveFontSize(2)}
               color="white"
-              justifyContent={"center"}
-              alignItems={"center"}
-              
             >
               Close
             </Text>
             </TouchableOpacity>
           </View>
           <MicComponent />
-          
-       
       </BlurView>
       </BottomSheetView>
     </BottomSheet>

@@ -61,8 +61,8 @@ export const ProfileScreen = observer(() => {
 
   const coinData = walletStore.balance;
 
-  const [activeTab, setActiveTab] = useState(1);
-  const [activeAssetTab, setActiveAssetTab] = useState(1);
+  const [activeTab, setActiveTab] = useState(0);
+  const [activeAssetTab, setActiveAssetTab] = useState(0);
 
   const [itemsBalance, setItemsBalance] = useState(0);
 
@@ -330,7 +330,8 @@ export const ProfileScreen = observer(() => {
               style={{
                 borderWidth: 3,
                 borderColor: "black",
-                borderRadius: 50
+                borderRadius: 50,
+               
               }}
             >
               <Avatar
@@ -370,7 +371,7 @@ export const ProfileScreen = observer(() => {
           <View
             style={{
               alignItems: "center",
-              marginTop: hp("5.54%"),
+              marginTop: '15%',
               backgroundColor: "black",
             }}
           >
