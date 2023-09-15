@@ -97,7 +97,7 @@ export const googleWebClientId =
 const defaultChatBackgroundTheme = [
   {
     value:
-      "https://etofs.com/ipfs/QmaRpkWFgMhxjp6kkugCYNTF9rE4vmXdfHE4DVNDvzwTvK",
+      "https://w0.peakpx.com/wallpaper/277/242/HD-wallpaper-blackout-black-solid-plain-dark.jpg",
     isSelected: false,
     alt: "Default",
   },
