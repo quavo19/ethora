@@ -341,7 +341,7 @@ const Bubble = observer((props: BubbleProps) => {
 
   const AnimatedStyle = {
     backgroundColor:
-      position === 'left' ? colors.leftBubbleBackground : colors.defaultBlue,
+      position === 'left' ? colors.leftBubbleBackground : colors.RightBubbleBackground,
   };
 
   const replyComponent = () => {
@@ -362,7 +362,7 @@ const Bubble = observer((props: BubbleProps) => {
             bg={
               position === 'left'
                 ? colors.leftBubbleBackground
-                : colors.defaultBlue
+                : colors.RightBubbleBackground
             }
           />
           <View justifyContent={'center'}>
@@ -541,12 +541,12 @@ const styles = {
       padding: 2,
       borderLeftWidth: 2,
       borderWidth: 2,
-      borderColor: colors.defaultBlue,
+      borderColor: colors.RightBubbleBackground,
       borderBottomWidth: 0,
     },
     wrapper: {
       borderRadius: 15,
-      backgroundColor: colors.defaultBlue,
+      backgroundColor: colors.RightBubbleBackground,
       marginLeft: 60,
       minHeight: 20,
       justifyContent: 'flex-end',
