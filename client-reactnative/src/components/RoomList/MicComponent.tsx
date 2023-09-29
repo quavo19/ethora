@@ -15,6 +15,12 @@ import ChooseVideo from './ChooseVideoFile';
 import Icon  from 'react-native-vector-icons/Feather';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 import Video from 'react-native-video';
+import { 
+  responsiveHeight, 
+  responsiveWidth, 
+  responsiveFontSize 
+} from 'react-native-responsive-dimensions';
+
 
 
 const screenHeight = Dimensions.get('window').height;
@@ -228,14 +234,14 @@ const MicComponent: React.FC = () => {
             source={require('./../../assets/progressbar.json')}
             autoPlay
             loop
-            style={{ width: 270, height: 270 }}
+            style={{ width: 270, height: "28%"}}
           />
         </View>
         : (
         <LottieView
           source={require('./../../assets/smallrec.json')}
           progress={0.2}
-          style={{ width: 270, height: 270 }}
+          style={{ width: "80%", height: "25%" }}
         />
       )}
 
@@ -247,12 +253,12 @@ const MicComponent: React.FC = () => {
         
       }}>
         <TouchableOpacity onPress={togglePlayback} style={styles.playButton}>
-          <Icon name={isPlaying ? 'pause' : 'play'} size={30} color="#fff" />
+          <Icon name={isPlaying ? 'pause' : 'play'} size={20} color="#fff" />
         </TouchableOpacity>
         <LottieView
           source={require('./../../assets/progressbar.json')}
           progress={progress}
-          style={{ width: 360, height: 80 }}
+          style={{ width: "80%", height: 80 }}
         />
       </View>
       
@@ -301,7 +307,8 @@ const MicComponent: React.FC = () => {
 const styles = StyleSheet.create({
   voicetime: {
     fontWeight: "bold",
-    color: "gray"
+    color: "gray",
+    fontSize: responsiveFontSize(2)
   },
   pauseMedia: {
     display: "flex",
@@ -311,48 +318,48 @@ const styles = StyleSheet.create({
   },
   pauseplay: {
     position: "absolute",
-    left: 27
+    left: responsiveWidth(7) // Assuming 27 was roughly 7% of the device width
   },
   playButton: {
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 10,
+    padding: responsiveWidth(3), // Assuming 10 was roughly 3% of the device width
   },
   progressBar: {
     flexDirection: 'row',
-    height: 10,
-    width: '80%',
+    height: responsiveHeight(1.5), // Assuming 10 was 1.5% of the device height
+    width: responsiveWidth(80),
     backgroundColor: '#E0E0E0',
-    borderRadius: 5,
-    marginTop: 15,
+    borderRadius: responsiveWidth(1.5),
+    marginTop: responsiveHeight(2)
   },
   progressFill: {
     backgroundColor: '#4169E1',
-    height: 10,
-    borderRadius: 5,
+    height: responsiveHeight(1.5),
+    borderRadius: responsiveWidth(1.5),
   },
   videoStyle: {
-    width: '90%',
-    height: halfScreenHeight,
+    width: responsiveWidth(90),
+    height: responsiveHeight(50),
   },
   modalView: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    width: '100%',
+    width: responsiveWidth(100),
   },
   closeButton: {
     alignItems: "flex-end",
     justifyContent: "flex-start",
-    padding: 10,
-    marginTop: 15,
+    padding: responsiveWidth(3),
+    marginTop: responsiveHeight(2),
   },
   uploadToApi: {
     alignItems: 'center',
-    padding: 10,
-    marginTop: 15,
-    borderRadius: 10,
+    padding: responsiveWidth(3),
+    marginTop: responsiveHeight(2),
+    borderRadius: responsiveWidth(3),
     backgroundColor: '#fff'
   }
 });

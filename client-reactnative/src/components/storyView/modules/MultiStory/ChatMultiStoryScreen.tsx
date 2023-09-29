@@ -45,7 +45,7 @@ const ChatMultiStoryScreen = () => {
             },
             userNameStyle: { fontSize: 16 },
             userImageStyle: { borderRadius: 10},
-            containerStyle: {borderRadius: 10, height: "100%", width:  150, borderWidth: 0, marginHorizontal: -10}            
+            containerStyle: {borderRadius: 10, height: "80%", width:  90, borderWidth: 0, marginHorizontal: -10}            
           }}
           storyContainerProps={{
             renderHeaderComponent: ({ userStories }) => (

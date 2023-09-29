@@ -98,7 +98,6 @@ const ChatScreen2 = observer(({ route }: any) => {
         height: "95%",
        }} 
       >
-        
         <ChatContainer
         containerType="main"
         roomDetails={room}
